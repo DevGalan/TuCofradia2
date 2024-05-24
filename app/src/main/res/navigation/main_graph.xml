@@ -34,7 +34,4 @@
         android:name="com.devgalan.tucofradia2.ui.contact.ContactFragment"
         android:label="@string/contact"
         tools:layout="@layout/fragment_contact" />
-    <action
-        android:id="@+id/action_global_newsFragment"
-        app:destination="@id/newsFragment" />
 </navigation>

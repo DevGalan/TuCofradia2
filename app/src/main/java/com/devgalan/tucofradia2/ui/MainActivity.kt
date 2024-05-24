@@ -1,6 +1,7 @@
 package com.devgalan.tucofradia2.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setToolbar() {
-        toolbar = binding.mainView.mainToolbar.toolbar
+        toolbar = binding.mainView.toolbar
 
         setSupportActionBar(toolbar)
     }
