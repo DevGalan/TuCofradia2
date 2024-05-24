@@ -1,17 +1,12 @@
 package com.devgalan.tucofradia2.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.devgalan.tucofradia2.R
 import com.devgalan.tucofradia2.databinding.ActivityMainBinding
 import com.google.android.material.appbar.MaterialToolbar
@@ -48,9 +43,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setToolbar() {
+
         toolbar = binding.mainView.toolbar
 
-        setSupportActionBar(toolbar)
+        toolbar.inflateMenu(R.menu.main_toolbar_menu)
+
+        toolbar.setTitle(R.string.home)
+
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            true
+        }
     }
 
     private fun setDrawer() {
@@ -61,50 +63,22 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        setTitle(R.string.home)
+        toolbar.setTitle(R.string.home)
 
         setNavigationView()
     }
 
     private fun setNavigationView() {
         drawerNavigationView.setNavigationItemSelectedListener {
-
-            setTitle(it.title)
-
-            when(it.itemId) {
-                R.id.nav_home -> {
-                    navController.navigate(R.id.homeFragment)
-                }
-                R.id.nav_profile -> {
-                    navController.navigate(R.id.profileFragment)
-                }
-            }
+            navController.navigate(it.itemId)
 
             val navController = navController
             navController.addOnDestinationChangedListener { _, destination, _ ->
-                setTitle(destination.label)
+                toolbar.setTitle(destination.label)
             }
 
             drawerLayout.closeDrawers()
             true
         }
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.main_toolbar_menu, menu)
-//        return true
-//    }
-//
-//    override fun onSupportNavigateUp(): Boolean {
-//        val navController = findNavController(R.id.navHostFragment)
-//        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//
-//        if (toggle.onOptionsItemSelected(item)) {
-//            return true
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
 }
