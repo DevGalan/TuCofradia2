@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/homeFragment">
 
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.devgalan.tucofradia2.ui.auth.AuthFragment"
+        android:label="@string/auth"
+        tools:layout="@layout/fragment_auth" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.devgalan.tucofradia2.ui.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.devgalan.tucofradia2.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_authFragment2"
+            app:destination="@id/authFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.devgalan.tucofradia2.ui.news.NewsFragment"
+        android:label="@string/news"
+        tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.devgalan.tucofradia2.ui.contact.ContactFragment"
+        android:label="@string/contact"
+        tools:layout="@layout/fragment_contact" />
+    <action
+        android:id="@+id/action_global_newsFragment"
+        app:destination="@id/newsFragment" />
 </navigation>

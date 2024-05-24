@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#F7F1E3</color>
-    <color name="secondary">#2C2C54</color>
+    <color name="primary">#2C2C54</color>
+    <color name="primary_dark">#232343</color>
+    <color name="secondary">#FF6347</color>
     <color name="accent">#FFB142</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#F7F1E3</color>
+
+<!--    <color name="primary_dark">#E7D5AB</color>-->
+<!--    <color name="secondary">#FF5252</color>-->
 
     <color name="red">#FF0000</color>
 </resources>
