@@ -6,10 +6,17 @@
     app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/authFragment"
-        android:name="com.devgalan.tucofradia2.ui.auth.AuthFragment"
+        android:id="@+id/loginFragment"
+        android:name="com.devgalan.tucofradia2.ui.auth.login.LoginFragment"
         android:label="@string/auth"
-        tools:layout="@layout/fragment_auth" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_signinFragment"
+            app:destination="@id/signinFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.devgalan.tucofradia2.ui.home.HomeFragment"
@@ -21,8 +28,8 @@
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileFragment_to_authFragment2"
-            app:destination="@id/authFragment" />
+            android:id="@+id/action_profileFragment_to_signinFragment"
+            app:destination="@id/signinFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
@@ -34,4 +41,15 @@
         android:name="com.devgalan.tucofradia2.ui.contact.ContactFragment"
         android:label="@string/contact"
         tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/signinFragment"
+        android:name="com.devgalan.tucofradia2.ui.auth.signin.SigninFragment"
+        android:label="@string/auth" >
+        <action
+            android:id="@+id/action_signinFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signinFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 </navigation>

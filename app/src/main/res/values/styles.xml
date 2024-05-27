@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Toolbar">
+        <item name="android:background">@color/primary</item>
+        <item name="titleTextColor">@color/white</item>
+    </style>
+
+    <style name="Title" parent="Padding">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Title.NonSelected">
+        <item name="android:textColor">@color/white_alpha</item>
+    </style>
+
+    <style name="Button">
+        <item name="backgroundTint">@color/accent</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+    </style>
+
+    <style name="Error">
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
+    <style name="Margin">
+        <item name="android:layout_margin">16dp</item>
+    </style>
+
+    <style name="Padding">
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="ViewRoot" parent="Padding">
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="EditText" parent="ListItem">
+        <item name="android:textColorHint">@color/white_alpha</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Checkbox" parent="ListItem">
+        <item name="android:buttonTint">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ListItem">
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="Card" parent="Padding">
+        <item name="cardCornerRadius">16dp</item>
+    </style>
+
+    <style name="ActionButtonPadding">
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="CardTitle" parent="Title">
+        <item name="android:textSize">18sp</item>
+    </style>
+</resources>

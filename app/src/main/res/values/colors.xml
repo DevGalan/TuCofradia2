@@ -6,6 +6,7 @@
     <color name="accent">#FFB142</color>
     <color name="black">#FF000000</color>
     <color name="white">#F7F1E3</color>
+    <color name="white_alpha">#B3F7F1E3</color>
 
 <!--    <color name="primary_dark">#E7D5AB</color>-->
 <!--    <color name="secondary">#FF5252</color>-->
