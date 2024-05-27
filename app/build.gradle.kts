@@ -50,19 +50,20 @@ dependencies {
 
     // Corrutinas
     implementation(libs.kotlinx.coroutines.android)
-
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
-
     // Picasso
     implementation(libs.picasso)
 
     // ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-
     // LiveData
     implementation(libs.androidx.lifecycle.livedata.ktx)
+    // Fragment
+    implementation(libs.androidx.fragment.ktx)
+    // Activity
+    implementation(libs.androidx.activity.ktx)
 
     // Dagger hilt
     implementation(libs.com.google.dagger.hilt.android2)

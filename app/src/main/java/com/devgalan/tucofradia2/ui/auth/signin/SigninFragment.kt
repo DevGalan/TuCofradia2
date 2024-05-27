@@ -13,7 +13,8 @@ import com.devgalan.tucofradia2.databinding.FragmentSigninBinding
 class SigninFragment : Fragment() {
 
     private lateinit var binding: FragmentSigninBinding
-    private val signinViewModel = SigninViewModel()
+
+    private val signinViewModel = SigninViewModel() by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
