@@ -7,8 +7,6 @@ class RegisterUserUseCase(val onError: (String) -> Unit) {
 
     private val repository = UserRepository()
 
-
-
     suspend operator fun invoke(registerUserDto: RegisterUserDto) = repository.registerUser(registerUserDto, onError)
 
 }

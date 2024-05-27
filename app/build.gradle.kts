@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("androidx.navigation.safeargs.kotlin")
+    // Dagger hilt
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -60,6 +63,10 @@ dependencies {
 
     // LiveData
     implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    // Dagger hilt
+    implementation(libs.com.google.dagger.hilt.android2)
+    kapt(libs.hilt.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
