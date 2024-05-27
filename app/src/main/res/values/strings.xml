@@ -22,4 +22,5 @@
     <string name="username_hint">Nombre</string>
     <string name="repeat_password_hint">Repite la contraseña</string>
     <string name="error">Error</string>
+    <string name="logout">Cerrar sesión</string>
 </resources>

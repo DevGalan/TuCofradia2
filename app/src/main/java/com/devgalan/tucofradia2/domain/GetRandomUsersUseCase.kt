@@ -1,10 +1,9 @@
 package com.devgalan.tucofradia2.domain
 
 import com.devgalan.tucofradia2.data.repository.user.UserRepository
+import javax.inject.Inject
 
-class GetRandomUsersUseCase(val onError: (String) -> Unit) {
+class GetRandomUsersUseCase @Inject constructor(private val repository: UserRepository) {
 
-    private val repository = UserRepository()
-
-    suspend operator fun invoke(amount: Int) = repository.getRandomUsers(amount, onError)
+    suspend operator fun invoke(amount: Int, onError: (String) -> Unit) = repository.getRandomUsers(amount, onError)
 }

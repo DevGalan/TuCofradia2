@@ -1,8 +1,9 @@
 package com.devgalan.tucofradia2.core
 
 import android.os.SystemClock
+import javax.inject.Inject
 
-class AntiSpamHelper {
+class AntiSpamHelper @Inject constructor() {
     private var lastRegisterClickTime: Long = 0
 
     fun checkSpamming(): Boolean {

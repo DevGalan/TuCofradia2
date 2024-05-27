@@ -7,16 +7,15 @@ import com.devgalan.tucofradia2.core.AntiSpamHelper
 import com.devgalan.tucofradia2.data.dto.RegisterUserDto
 import com.devgalan.tucofradia2.data.model.user.User
 import com.devgalan.tucofradia2.domain.RegisterUserUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SigninViewModel : ViewModel() {
-
-    private val registerUserUseCase: RegisterUserUseCase =
-        RegisterUserUseCase({ onError.postValue(it) })
-
-    private val antiSpamHelper = AntiSpamHelper()
+@HiltViewModel
+class SigninViewModel @Inject constructor(private val antiSpamHelper:AntiSpamHelper, private val registerUserUseCase: RegisterUserUseCase) : ViewModel() {
 
     val onError = MutableLiveData<String>()
+    val onFinished = MutableLiveData<Boolean>()
 
     fun registerUser(registerUserDto: RegisterUserDto, confirmPassword: String) {
 
@@ -30,8 +29,8 @@ class SigninViewModel : ViewModel() {
         if (!checkIsValidAndGiveError(registerUserDto, confirmPassword)) return
 
         viewModelScope.launch {
-            val user: User = registerUserUseCase(registerUserDto)
-            println(user)
+            val user: User = registerUserUseCase(registerUserDto) { onError.postValue(it) }
+            onFinished.value = user.id != -1L
         }
     }
 

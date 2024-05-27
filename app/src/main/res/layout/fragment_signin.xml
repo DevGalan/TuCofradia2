@@ -88,6 +88,13 @@
                 android:inputType="textPassword"
                 android:maxLength="30" />
 
+            <CheckBox
+                android:id="@+id/checkBox"
+                style="@style/Checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recuérdame" />
+
             <Button
                 android:id="@+id/btnRegister"
                 style="@style/Button"

@@ -5,16 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devgalan.tucofradia2.R
 import com.devgalan.tucofradia2.data.dto.RegisterUserDto
 import com.devgalan.tucofradia2.databinding.FragmentSigninBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SigninFragment : Fragment() {
 
-    private lateinit var binding: FragmentSigninBinding
+    private val signinViewModel by viewModels<SigninViewModel>()
 
-    private val signinViewModel = SigninViewModel() by viewModels()
+    private lateinit var binding: FragmentSigninBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +38,11 @@ class SigninFragment : Fragment() {
         signinViewModel.onError.observe(viewLifecycleOwner) {
             binding.cvError.visibility = View.VISIBLE
             binding.tvError.text = it
+        }
+        signinViewModel.onFinished.observe(viewLifecycleOwner) {
+            if (it) {
+                findNavController().navigate(R.id.action_signinFragment_to_profileFragment)
+            }
         }
     }
 
