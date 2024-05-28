@@ -60,7 +60,7 @@ class SigninFragment : Fragment() {
             val confirmPassword = binding.etRepeatPassword.text.toString()
 
             val registerUserDto = RegisterUserDto(name, email, password)
-            signinViewModel.registerUser(registerUserDto, confirmPassword)
+            signinViewModel.registerUser(registerUserDto, confirmPassword, binding.cbRemember.isChecked)
         }
     }
 }

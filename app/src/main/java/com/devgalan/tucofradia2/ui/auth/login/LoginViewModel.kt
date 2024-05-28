@@ -1,5 +1,6 @@
 package com.devgalan.tucofradia2.ui.auth.login
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,6 +8,7 @@ import com.devgalan.tucofradia2.core.AntiSpamHelper
 import com.devgalan.tucofradia2.data.dto.LoginUserDto
 import com.devgalan.tucofradia2.data.dto.RegisterUserDto
 import com.devgalan.tucofradia2.data.model.user.User
+import com.devgalan.tucofradia2.data.storage.StorageDataAccess
 import com.devgalan.tucofradia2.domain.GetRandomUsersUseCase
 import com.devgalan.tucofradia2.domain.LoginUserUseCase
 import com.devgalan.tucofradia2.domain.RegisterUserUseCase
@@ -15,12 +17,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val antiSpamHelper: AntiSpamHelper, private val loginUserUseCase: LoginUserUseCase) : ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val antiSpamHelper: AntiSpamHelper,
+    private val loginUserUseCase: LoginUserUseCase,
+    private val storageDataAccess: StorageDataAccess
+) : ViewModel() {
 
     val onError = MutableLiveData<String>()
     val onFinished = MutableLiveData<Boolean>()
 
-    fun loginUser(loginUserDto: LoginUserDto) {
+    fun loginUser(loginUserDto: LoginUserDto, remember: Boolean) {
 
         antiSpamHelper.checkSpamming().let {
             if (it) {
@@ -33,7 +39,14 @@ class LoginViewModel @Inject constructor(private val antiSpamHelper: AntiSpamHel
 
         viewModelScope.launch {
             val user: User = loginUserUseCase(loginUserDto) { onError.postValue(it) }
-            onFinished.value = user.id != -1L
+            val hasUser = user.id != -1L
+            if (hasUser) {
+                if (remember)
+                    storageDataAccess.saveUser(user)
+                else
+                    storageDataAccess.removeUser()
+            }
+            onFinished.value = hasUser
         }
     }
 

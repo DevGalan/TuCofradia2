@@ -6,18 +6,23 @@ import androidx.lifecycle.viewModelScope
 import com.devgalan.tucofradia2.core.AntiSpamHelper
 import com.devgalan.tucofradia2.data.dto.RegisterUserDto
 import com.devgalan.tucofradia2.data.model.user.User
+import com.devgalan.tucofradia2.data.storage.StorageDataAccess
 import com.devgalan.tucofradia2.domain.RegisterUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SigninViewModel @Inject constructor(private val antiSpamHelper:AntiSpamHelper, private val registerUserUseCase: RegisterUserUseCase) : ViewModel() {
+class SigninViewModel @Inject constructor(
+    private val antiSpamHelper: AntiSpamHelper,
+    private val registerUserUseCase: RegisterUserUseCase,
+    private val storageDataAccess: StorageDataAccess
+) : ViewModel() {
 
     val onError = MutableLiveData<String>()
     val onFinished = MutableLiveData<Boolean>()
 
-    fun registerUser(registerUserDto: RegisterUserDto, confirmPassword: String) {
+    fun registerUser(registerUserDto: RegisterUserDto, confirmPassword: String, remember: Boolean) {
 
         antiSpamHelper.checkSpamming().let {
             if (it) {
@@ -30,7 +35,14 @@ class SigninViewModel @Inject constructor(private val antiSpamHelper:AntiSpamHel
 
         viewModelScope.launch {
             val user: User = registerUserUseCase(registerUserDto) { onError.postValue(it) }
-            onFinished.value = user.id != -1L
+            val hasUser = user.id != -1L
+            if (hasUser) {
+                if (remember)
+                    storageDataAccess.saveUser(user)
+                else
+                    storageDataAccess.removeUser()
+            }
+            onFinished.value = hasUser
         }
     }
 

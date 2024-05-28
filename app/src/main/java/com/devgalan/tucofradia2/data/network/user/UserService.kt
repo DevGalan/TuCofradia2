@@ -1,6 +1,5 @@
 package com.devgalan.tucofradia2.data.network.user
 
-import com.devgalan.tucofradia2.core.RetrofitHelper
 import com.devgalan.tucofradia2.data.ApiResponse
 import com.devgalan.tucofradia2.data.dto.LoginUserDto
 import com.devgalan.tucofradia2.data.dto.RegisterUserDto
@@ -11,14 +10,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class UserService @Inject constructor(private val api:UserApiClient) {
+class UserService @Inject constructor(private val api: UserApiClient) {
 
     suspend fun getRandomUsers(amount: Int, onError: (String) -> Unit): List<User> {
         return withContext(Dispatchers.IO) {
             val response =
                 api.getRandomUsers(amount.toString())
             if (!response.isSuccessful) {
-                onError(response.errorBody()?.string() ?: "Error desconocido")
+                onError(response.code().toString())
             }
             response.body() ?: emptyList()
         }
@@ -55,6 +54,16 @@ class UserService @Inject constructor(private val api:UserApiClient) {
             } else {
                 response.body() ?: User(-1, "", "", "", "")
             }
+        }
+    }
+
+    suspend fun getUserById(userId: Long, onError: (String) -> Unit): User {
+        return withContext(Dispatchers.IO) {
+            val response = api.getUserById(userId)
+            if (!response.isSuccessful) {
+                onError(response.code().toString())
+            }
+            response.body() ?: User(-1, "", "", "", "")
         }
     }
 }

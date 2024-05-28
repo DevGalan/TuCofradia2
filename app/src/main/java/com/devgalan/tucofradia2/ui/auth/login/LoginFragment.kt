@@ -59,7 +59,7 @@ class LoginFragment : Fragment() {
             val password = binding.etPassword.text.toString()
 
             val registerUserDto = LoginUserDto(email, password)
-            loginViewModel.loginUser(registerUserDto)
+            loginViewModel.loginUser(registerUserDto, binding.cbRemember.isChecked)
         }
     }
 }

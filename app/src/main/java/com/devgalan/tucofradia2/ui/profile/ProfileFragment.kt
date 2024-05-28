@@ -35,7 +35,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun checkIfUserIsLogged() {
-        if (profileViewModel.getUser() == null)
+        if (!profileViewModel.userIsLogged())
         {
             findNavController().navigate(R.id.action_profileFragment_to_signinFragment)
         }

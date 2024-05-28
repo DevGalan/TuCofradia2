@@ -26,4 +26,10 @@ class UserRepository @Inject constructor(private val api: UserService, private v
         userProvider.currentUser = response
         return response
     }
+
+    suspend fun getUserById(userId: Long, onError: (String) -> Unit) : User {
+        val response = api.getUserById(userId, onError)
+        userProvider.currentUser = response
+        return response
+    }
 }
