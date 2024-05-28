@@ -51,5 +51,6 @@ class ProfileFragment : Fragment() {
     private fun initUI() {
         binding.tvUsername.text = profileViewModel.getUser()?.username
         binding.tvEmail.text = profileViewModel.getUser()?.email
+        binding.tvProfileMessage.text = profileViewModel.getUser()?.profileMessage
     }
 }
