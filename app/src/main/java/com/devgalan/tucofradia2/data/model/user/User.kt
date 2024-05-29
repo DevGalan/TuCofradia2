@@ -5,5 +5,5 @@ data class User(
     var username: String,
     val email: String,
     var profileMessage: String,
-    val profilePicture: String
+    val profilePicturePath: String
 )

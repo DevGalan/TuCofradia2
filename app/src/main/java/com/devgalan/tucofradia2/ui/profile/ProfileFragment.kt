@@ -1,19 +1,24 @@
 package com.devgalan.tucofradia2.ui.profile
 
 import android.app.Dialog
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devgalan.tucofradia2.R
 import com.devgalan.tucofradia2.databinding.FragmentProfileBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -21,6 +26,13 @@ class ProfileFragment : Fragment() {
     private val profileViewModel by viewModels<ProfileViewModel>()
 
     private lateinit var binding: FragmentProfileBinding
+
+    private val pickMedia =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            if (uri != null) {
+                profileViewModel.uploadProfileImage(binding.ivProfile.context, uri)
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,6 +75,10 @@ class ProfileFragment : Fragment() {
         binding.btnEditProfile.setOnClickListener() {
             showDialog()
         }
+
+        binding.ivProfile.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
     }
 
     private fun showDialog() {
@@ -104,5 +120,19 @@ class ProfileFragment : Fragment() {
         binding.tvUsername.text = profileViewModel.getUser()?.username
         binding.tvEmail.text = profileViewModel.getUser()?.email
         binding.tvProfileMessage.text = profileViewModel.getUser()?.profileMessage
+        if (profileViewModel.getUser()?.profileMessage.isNullOrEmpty()) {
+            binding.tvProfileMessage.text = "No hay mensaje de perfil"
+        }
+        if (profileViewModel.getUser()?.profilePicturePath.isNullOrEmpty()) {
+            binding.ivProfile.setImageResource(R.drawable.ic_profile)
+        } else {
+            Picasso.get().load(profileViewModel.getUser()?.profilePicturePath).centerCrop().fit().into(binding.ivProfile)
+//            val builder = Picasso.Builder(binding.ivProfile.context)
+//            builder.listener(fun(picasso: Picasso, uri: Uri, exception: Exception) {
+//                exception.printStackTrace()
+//            })
+//            builder.build().load("https://i.blogs.es/d559d0/jlacort_happy_elephant_running_across_the_desert._4k_26e6e27c-dbd6-4b14-b8ba-ac0841f2c25f/1366_2000.jpeg").into(binding.ivProfile)
+            println(profileViewModel.getUser()?.profilePicturePath)
+        }
     }
 }

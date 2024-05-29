@@ -3,7 +3,6 @@ package com.devgalan.tucofradia2.ui
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -61,7 +60,13 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = binding.drawerLayout
         drawerNavigationView = binding.navView
 
-        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close)
+        toggle = ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            toolbar,
+            R.string.drawer_open,
+            R.string.drawer_close
+        )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 

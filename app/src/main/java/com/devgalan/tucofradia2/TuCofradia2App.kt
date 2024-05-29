@@ -39,8 +39,6 @@ class TuCofradia2App : Application() {
     suspend fun getSavedUser() {
         val savedUser = storageDataAccess.getUser()
         val password = storageDataAccess.getPassword()
-        println(savedUser.toString())
-        println(password)
         if (savedUser.id != -1L && password.isNotEmpty()) {
             val loginUserDto = LoginUserDto(savedUser.email, password)
             loginUserUseCase(loginUserDto, ResultActions({

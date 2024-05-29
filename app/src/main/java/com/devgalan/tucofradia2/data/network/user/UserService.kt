@@ -10,6 +10,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class UserService @Inject constructor(private val api: UserApiClient) {
@@ -79,6 +80,20 @@ class UserService @Inject constructor(private val api: UserApiClient) {
             val response = api.updateUser(userId, user)
 
             doResultActions(response, resultActions, ERROR_USER)
+        }
+    }
+
+    suspend fun updateUserImage(userId: Long, image: MultipartBody.Part, resultActions: ResultActions<User>) {
+        return withContext(Dispatchers.IO) {
+            val response = api.updateUserImage(userId, image)
+
+            if (response.isSuccessful) {
+                val user = response.body() ?: ERROR_USER
+                resultActions.onSuccess(user)
+            }
+            else {
+                resultActions.onError(response.code().toString())
+            }
         }
     }
 
