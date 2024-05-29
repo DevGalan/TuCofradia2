@@ -14,6 +14,20 @@ class Prefs(val context: Context) : StorageData {
         return prefs.getString(key, null)
     }
 
+    override fun encryptAndSaveString(key: String, value: String) {
+        val encryptedValue = AESCrypt().encrypt(value)
+        prefs.edit().putString(key, encryptedValue).apply()
+    }
+
+    override fun decryptAndGetString(key: String): String? {
+        val encryptedValue = prefs.getString(key, null)
+        return if (encryptedValue != null) {
+            AESCrypt().decrypt(encryptedValue)
+        } else {
+            null
+        }
+    }
+
     override fun saveInt(key: String, value: Int) {
         prefs.edit().putInt(key, value).apply()
     }

@@ -41,8 +41,10 @@ class LoginViewModel @Inject constructor(
             val user: User = loginUserUseCase(loginUserDto) { onError.postValue(it) }
             val hasUser = user.id != -1L
             if (hasUser) {
-                if (remember)
+                if (remember) {
                     storageDataAccess.saveUser(user)
+                    storageDataAccess.savePassword(loginUserDto.password)
+                }
                 else
                     storageDataAccess.removeUser()
             }

@@ -1,6 +1,5 @@
 package com.devgalan.tucofradia2.data.storage
 
-import android.util.Log
 import com.devgalan.tucofradia2.core.StorageData
 import com.devgalan.tucofradia2.data.model.user.User
 import com.google.gson.Gson
@@ -28,5 +27,13 @@ class StorageDataAccess @Inject constructor(val dataStorage: StorageData, val gs
             }
         }
         return User(-1, "", "", "", "")
+    }
+
+    fun getPassword(): String {
+        return dataStorage.decryptAndGetString("password") ?: ""
+    }
+
+    fun savePassword(password: String) {
+        dataStorage.encryptAndSaveString("password", password)
     }
 }

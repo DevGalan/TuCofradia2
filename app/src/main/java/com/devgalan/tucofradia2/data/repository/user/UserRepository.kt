@@ -32,4 +32,10 @@ class UserRepository @Inject constructor(private val api: UserService, private v
         userProvider.currentUser = response
         return response
     }
+
+    suspend fun updateUser(user: User, onSuccess: () -> Unit, onError: (String) -> Unit): User {
+        val response = api.updateUser(user, onSuccess, onError)
+        userProvider.currentUser = response
+        return response
+    }
 }

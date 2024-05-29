@@ -37,8 +37,10 @@ class SigninViewModel @Inject constructor(
             val user: User = registerUserUseCase(registerUserDto) { onError.postValue(it) }
             val hasUser = user.id != -1L
             if (hasUser) {
-                if (remember)
+                if (remember) {
                     storageDataAccess.saveUser(user)
+                    storageDataAccess.savePassword(registerUserDto.password)
+                }
                 else
                     storageDataAccess.removeUser()
             }
@@ -46,7 +48,7 @@ class SigninViewModel @Inject constructor(
         }
     }
 
-    fun checkIsValidAndGiveError(
+    private fun checkIsValidAndGiveError(
         registerUserDto: RegisterUserDto,
         confirmPassword: String
     ): Boolean {

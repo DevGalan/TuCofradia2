@@ -2,9 +2,12 @@ package com.devgalan.tucofradia2
 
 import android.app.Application
 import android.util.Log
+import com.devgalan.tucofradia2.core.StorageData
+import com.devgalan.tucofradia2.data.dto.LoginUserDto
 import com.devgalan.tucofradia2.data.model.user.UserProvider
 import com.devgalan.tucofradia2.data.storage.StorageDataAccess
 import com.devgalan.tucofradia2.domain.GetUserByIdUseCase
+import com.devgalan.tucofradia2.domain.LoginUserUseCase
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +26,7 @@ class TuCofradia2App: Application() {
     lateinit var storageDataAccess: StorageDataAccess
 
     @Inject
-    lateinit var getUserByIdUseCase: GetUserByIdUseCase
+    lateinit var loginUserUseCase: LoginUserUseCase
 
     val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
@@ -36,9 +39,14 @@ class TuCofradia2App: Application() {
     }
 
     suspend fun getSavedUser() {
-        val savedUserId = storageDataAccess.getUser().id
-        if (savedUserId != -1L) {
-            userProvider.currentUser = getUserByIdUseCase(savedUserId) {
+        val savedUser = storageDataAccess.getUser()
+        val password = storageDataAccess.getPassword()
+        if (savedUser.id != -1L && password.isNotEmpty()) {
+            val loginUserDto = LoginUserDto(savedUser.email, password)
+            userProvider.currentUser = loginUserUseCase(loginUserDto) {
+                if (it == "Email o contraseñas incorrectos") {
+                    storageDataAccess.removeUser()
+                }
                 Log.e("TuCofradia2App get saved user", it)
             }
         }

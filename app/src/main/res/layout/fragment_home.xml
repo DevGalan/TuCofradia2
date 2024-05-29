@@ -8,7 +8,7 @@
     tools:context=".ui.home.HomeFragment">
 
     <Button
-        android:id="@+id/btnPlay"
+        android:id="@+id/btnMyServers"
         style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

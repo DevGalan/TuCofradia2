@@ -8,6 +8,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -20,4 +21,6 @@ interface UserApiClient {
     suspend fun registerUser(@Body registerUserDto: RegisterUserDto): Response<ApiResponse<User>>
     @POST("users/login")
     suspend fun loginUser(@Body loginUserDto: LoginUserDto): Response<User>
+    @PUT("users/{id}")
+    suspend fun updateUser(@Path("id") userId: Long, @Body user: User): Response<User>
 }

@@ -69,6 +69,9 @@ dependencies {
     implementation(libs.com.google.dagger.hilt.android2)
     kapt(libs.hilt.compiler)
 
+    // AEScrypt
+    implementation(libs.scottyab.aescrypt)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
