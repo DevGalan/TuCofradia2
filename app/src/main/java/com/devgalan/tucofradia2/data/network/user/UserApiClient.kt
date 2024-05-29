@@ -3,6 +3,7 @@ package com.devgalan.tucofradia2.data.network.user
 import com.devgalan.tucofradia2.data.ApiResponse
 import com.devgalan.tucofradia2.data.dto.LoginUserDto
 import com.devgalan.tucofradia2.data.dto.RegisterUserDto
+import com.devgalan.tucofradia2.data.dto.UpdateUserDto
 import com.devgalan.tucofradia2.data.model.user.User
 import retrofit2.Response
 import retrofit2.http.Body
@@ -22,5 +23,5 @@ interface UserApiClient {
     @POST("users/login")
     suspend fun loginUser(@Body loginUserDto: LoginUserDto): Response<User>
     @PUT("users/{id}")
-    suspend fun updateUser(@Path("id") userId: Long, @Body user: User): Response<User>
+    suspend fun updateUser(@Path("id") userId: Long, @Body updateUserDto: UpdateUserDto): Response<User>
 }

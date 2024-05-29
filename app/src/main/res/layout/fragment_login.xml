@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/email_hint"
                 android:inputType="textEmailAddress"
-                android:maxLength="50" />
+                android:maxLength="55" />
 
             <EditText
                 android:id="@+id/etPassword"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/password_hint"
                 android:inputType="textPassword"
-                android:maxLength="30" />
+                android:maxLength="35" />
 
             <CheckBox
                 android:id="@+id/cbRemember"

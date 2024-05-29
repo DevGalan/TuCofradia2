@@ -75,7 +75,7 @@ class ProfileFragment : Fragment() {
         val fabCancel = dialog.findViewById<FloatingActionButton>(R.id.fabCancel)
 
         btnSave.setOnClickListener {
-            profileViewModel.updateProfile(etName.toString(), etMessage.toString())
+            profileViewModel.updateProfile(etName.text.toString(), etMessage.text.toString())
             dialog.dismiss()
         }
 
@@ -83,8 +83,19 @@ class ProfileFragment : Fragment() {
             dialog.dismiss()
         }
 
-        etName.hint = profileViewModel.getUser()?.username ?: "Nombre de usuario"
-        etMessage.hint = profileViewModel.getUser()?.profileMessage ?: "Mensaje de perfil"
+        val user = profileViewModel.getUser()
+        val username = user?.username ?: ""
+        val profileMessage = user?.profileMessage ?: ""
+
+        etName.hint = "Nombre de usuario"
+        etMessage.hint = "Mensaje de perfil"
+
+        if (username.isNotEmpty()) {
+            etName.setText(username)
+        }
+        if (profileMessage.isNotEmpty()) {
+            etMessage.setText(profileMessage)
+        }
 
         dialog.show()
     }

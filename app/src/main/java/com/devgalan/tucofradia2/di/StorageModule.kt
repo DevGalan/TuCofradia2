@@ -1,8 +1,8 @@
 package com.devgalan.tucofradia2.di
 
 import android.content.Context
-import com.devgalan.tucofradia2.core.Prefs
-import com.devgalan.tucofradia2.core.StorageData
+import com.devgalan.tucofradia2.core.data.Prefs
+import com.devgalan.tucofradia2.core.data.StorageData
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides

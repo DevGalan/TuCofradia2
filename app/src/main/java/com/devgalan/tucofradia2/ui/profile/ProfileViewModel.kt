@@ -3,6 +3,8 @@ package com.devgalan.tucofradia2.ui.profile
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devgalan.tucofradia2.data.ResultActions
+import com.devgalan.tucofradia2.data.dto.UpdateUserDto
 import com.devgalan.tucofradia2.data.model.user.User
 import com.devgalan.tucofradia2.data.model.user.UserProvider
 import com.devgalan.tucofradia2.data.storage.StorageDataAccess
@@ -27,23 +29,30 @@ class ProfileViewModel @Inject constructor(
         storageDataAccess.removeUser()
     }
 
-    fun userIsLogged() : Boolean {
+    fun userIsLogged(): Boolean {
         return userProvider.currentUser != null && userProvider.currentUser?.id != -1L
     }
 
     fun updateProfile(username: String, message: String) {
         val currentUser = userProvider.currentUser
-        val modifiedUser = User(currentUser?.id ?: -1, currentUser?.username ?: "", currentUser?.email ?: "", currentUser?.username ?: "", currentUser?.profileMessage ?: "")
-        modifiedUser.let {
-            it.username = username
-            it.profileMessage = message
-            userProvider.currentUser = it
-            viewModelScope.launch {
-                updateUserUseCase(modifiedUser, {userProvider.currentUser = modifiedUser; onFinished.postValue(true)}) { error ->
-                    println("Error updating user: $error")
-                    onFinished.postValue(false)
-                }
-            }
+        val userId = currentUser?.id ?: -1
+        val updateUserDto = UpdateUserDto(
+            username.ifEmpty { currentUser?.username ?: "" },
+            message.ifEmpty { currentUser?.profileMessage ?: "" }
+        )
+        viewModelScope.launch {
+            updateUserUseCase(userId, updateUserDto, ResultActions({
+                handleUpdateUserCall(it)
+                onFinished.postValue(true)
+                println("User updated: $it")
+            }, {
+                println("Error updating user: $it")
+                onFinished.postValue(false)
+            }))
         }
+    }
+
+    private fun handleUpdateUserCall(user: User) {
+        userProvider.currentUser = user;
     }
 }

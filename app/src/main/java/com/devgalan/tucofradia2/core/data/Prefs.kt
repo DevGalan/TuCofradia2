@@ -1,6 +1,7 @@
-package com.devgalan.tucofradia2.core
+package com.devgalan.tucofradia2.core.data
 
 import android.content.Context
+import com.devgalan.tucofradia2.core.AESCrypt
 
 class Prefs(val context: Context) : StorageData {
     private val PREFS_NAME = "TuCofradia2Prefs"

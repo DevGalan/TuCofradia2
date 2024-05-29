@@ -1,6 +1,6 @@
 package com.devgalan.tucofradia2.data.storage
 
-import com.devgalan.tucofradia2.core.StorageData
+import com.devgalan.tucofradia2.core.data.StorageData
 import com.devgalan.tucofradia2.data.model.user.User
 import com.google.gson.Gson
 import javax.inject.Inject

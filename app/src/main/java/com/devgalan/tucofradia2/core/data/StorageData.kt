@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.core
+package com.devgalan.tucofradia2.core.data
 
 interface StorageData {
     fun saveString(key:String, value:String)

@@ -3,7 +3,8 @@ package com.devgalan.tucofradia2.ui.auth.signin
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.devgalan.tucofradia2.core.AntiSpamHelper
+import com.devgalan.tucofradia2.core.help.AntiSpamHelper
+import com.devgalan.tucofradia2.data.ResultActions
 import com.devgalan.tucofradia2.data.dto.RegisterUserDto
 import com.devgalan.tucofradia2.data.model.user.User
 import com.devgalan.tucofradia2.data.storage.StorageDataAccess
@@ -34,18 +35,24 @@ class SigninViewModel @Inject constructor(
         if (!checkIsValidAndGiveError(registerUserDto, confirmPassword)) return
 
         viewModelScope.launch {
-            val user: User = registerUserUseCase(registerUserDto) { onError.postValue(it) }
-            val hasUser = user.id != -1L
-            if (hasUser) {
-                if (remember) {
-                    storageDataAccess.saveUser(user)
-                    storageDataAccess.savePassword(registerUserDto.password)
-                }
-                else
-                    storageDataAccess.removeUser()
-            }
-            onFinished.value = hasUser
+            registerUserUseCase(registerUserDto, ResultActions({
+                handleSigninCall(it, remember, registerUserDto)
+            }, {
+                onError.postValue(it)
+            }))
         }
+    }
+
+    private fun handleSigninCall(user: User, remember: Boolean, registerUserDto: RegisterUserDto) {
+        val hasUser = user.id != -1L
+        if (hasUser) {
+            if (remember) {
+                storageDataAccess.saveUser(user)
+                storageDataAccess.savePassword(registerUserDto.password)
+            } else
+                storageDataAccess.removeUser()
+        }
+        onFinished.postValue(hasUser)
     }
 
     private fun checkIsValidAndGiveError(

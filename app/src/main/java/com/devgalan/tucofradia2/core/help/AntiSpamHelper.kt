@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.core
+package com.devgalan.tucofradia2.core.help
 
 import android.os.SystemClock
 import javax.inject.Inject

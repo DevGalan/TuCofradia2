@@ -1,41 +1,41 @@
 package com.devgalan.tucofradia2.data.repository.user
 
+import com.devgalan.tucofradia2.data.ResultActions
 import com.devgalan.tucofradia2.data.dto.LoginUserDto
 import com.devgalan.tucofradia2.data.dto.RegisterUserDto
+import com.devgalan.tucofradia2.data.dto.UpdateUserDto
 import com.devgalan.tucofradia2.data.model.user.User
 import com.devgalan.tucofradia2.data.model.user.UserProvider
 import com.devgalan.tucofradia2.data.network.user.UserService
 import javax.inject.Inject
 
-class UserRepository @Inject constructor(private val api: UserService, private val userProvider: UserProvider){
+class UserRepository @Inject constructor(
+    private val api: UserService,
+    private val userProvider: UserProvider
+) {
 
-    suspend fun getRandomUsers(amount: Int, onError: (String) -> Unit) : List<User> {
-        val response = api.getRandomUsers(amount, onError)
+    suspend fun getRandomUsers(amount: Int, resultActions: ResultActions<List<User>>) {
+        val response = api.getRandomUsers(amount, resultActions)
         userProvider.randomUsers = response
-        return response
     }
 
-    suspend fun registerUser(registerUserDto: RegisterUserDto, onError: (String) -> Unit) : User {
-        val response = api.registerUser(registerUserDto, onError)
+    suspend fun registerUser(registerUserDto: RegisterUserDto, resultActions: ResultActions<User>) {
+        val response = api.registerUser(registerUserDto, resultActions)
         userProvider.currentUser = response
-        return response
     }
 
-    suspend fun loginUser(loginUserDto: LoginUserDto, onError: (String) -> Unit) : User {
-        val response = api.loginUser(loginUserDto, onError)
+    suspend fun loginUser(loginUserDto: LoginUserDto, resultActions: ResultActions<User>) {
+        val response = api.loginUser(loginUserDto, resultActions)
         userProvider.currentUser = response
-        return response
     }
 
-    suspend fun getUserById(userId: Long, onError: (String) -> Unit) : User {
-        val response = api.getUserById(userId, onError)
+    suspend fun getUserById(userId: Long, resultActions: ResultActions<User>) {
+        val response = api.getUserById(userId, resultActions)
         userProvider.currentUser = response
-        return response
     }
 
-    suspend fun updateUser(user: User, onSuccess: () -> Unit, onError: (String) -> Unit): User {
-        val response = api.updateUser(user, onSuccess, onError)
+    suspend fun updateUser(userId: Long, user: UpdateUserDto, resultActions: ResultActions<User>) {
+        val response = api.updateUser(userId, user, resultActions)
         userProvider.currentUser = response
-        return response
     }
 }

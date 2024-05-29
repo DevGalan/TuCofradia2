@@ -1,6 +1,6 @@
 package com.devgalan.tucofradia2.di
 
-import com.devgalan.tucofradia2.core.RetrofitHelper
+import com.devgalan.tucofradia2.core.help.RetrofitHelper
 import com.devgalan.tucofradia2.data.network.user.UserApiClient
 import com.google.gson.GsonBuilder
 import dagger.Module
