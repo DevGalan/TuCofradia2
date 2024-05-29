@@ -53,8 +53,6 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
-    // Picasso
-    implementation(libs.picasso)
 
     // ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
@@ -64,6 +62,10 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     // Activity
     implementation(libs.androidx.activity.ktx)
+
+    // Glide
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
 
     // Dagger hilt
     implementation(libs.com.google.dagger.hilt.android2)

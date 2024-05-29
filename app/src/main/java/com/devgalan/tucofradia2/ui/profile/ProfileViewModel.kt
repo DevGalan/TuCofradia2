@@ -69,6 +69,7 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch {
             updateUserImageUseCase(userId, multipartImage, ResultActions({
                 handleUpdateUserCall(it)
+                Thread.sleep(1000)
                 onFinished.postValue(true)
             }, {
                 println("Error updating user: $it")
