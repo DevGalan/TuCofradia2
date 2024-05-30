@@ -1,17 +1,13 @@
 package com.devgalan.tucofradia2.ui.news
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.devgalan.tucofradia2.R
-import com.devgalan.tucofradia2.data.model.news.NewsProvider
 import com.devgalan.tucofradia2.databinding.FragmentNewsBinding
-import com.devgalan.tucofradia2.databinding.FragmentProfileBinding
-import com.devgalan.tucofradia2.ui.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
