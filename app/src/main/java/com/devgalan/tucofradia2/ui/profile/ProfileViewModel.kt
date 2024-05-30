@@ -11,8 +11,8 @@ import com.devgalan.tucofradia2.data.dto.UpdateUserDto
 import com.devgalan.tucofradia2.data.model.user.User
 import com.devgalan.tucofradia2.data.model.user.UserProvider
 import com.devgalan.tucofradia2.data.storage.StorageDataAccess
-import com.devgalan.tucofradia2.domain.UpdateUserImageUseCase
-import com.devgalan.tucofradia2.domain.UpdateUserUseCase
+import com.devgalan.tucofradia2.domain.user.UpdateUserImageUseCase
+import com.devgalan.tucofradia2.domain.user.UpdateUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

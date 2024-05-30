@@ -8,7 +8,7 @@ import com.devgalan.tucofradia2.data.ResultActions
 import com.devgalan.tucofradia2.data.dto.RegisterUserDto
 import com.devgalan.tucofradia2.data.model.user.User
 import com.devgalan.tucofradia2.data.storage.StorageDataAccess
-import com.devgalan.tucofradia2.domain.RegisterUserUseCase
+import com.devgalan.tucofradia2.domain.user.RegisterUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

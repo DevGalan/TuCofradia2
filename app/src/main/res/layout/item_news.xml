@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemNews"
+    style="@style/ViewRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/primary_dark"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvNewsImage"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="16dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="16dp"
+            android:layout_margin="1dp">
+
+            <ImageView
+                android:id="@+id/ivNewsImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:tint="@color/black"
+                tools:src="@drawable/image_test_16_9" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvNewsTitle"
+        style="@style/Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Primera noticia, versión lanzada para todo el mundo." />
+
+    <TextView
+        android:id="@+id/tvNewsBody"
+        style="@style/Body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Tal día como hoy, se lanzó la versión 1.0 de la aplicación para todo el mundo. Esta versión incluye todas las funcionalidades que se han ido desarrollando a lo largo de los años. ¡Esperamos que os guste! 🎉🎉🎉" />
+
+    <TextView
+        android:id="@+id/tvNewsDate"
+        style="@style/Body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        tools:text="20/10/2024" />
+
+</LinearLayout>

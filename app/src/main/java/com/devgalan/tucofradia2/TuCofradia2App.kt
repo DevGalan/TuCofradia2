@@ -6,7 +6,7 @@ import com.devgalan.tucofradia2.data.ResultActions
 import com.devgalan.tucofradia2.data.dto.LoginUserDto
 import com.devgalan.tucofradia2.data.model.user.UserProvider
 import com.devgalan.tucofradia2.data.storage.StorageDataAccess
-import com.devgalan.tucofradia2.domain.LoginUserUseCase
+import com.devgalan.tucofradia2.domain.user.LoginUserUseCase
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

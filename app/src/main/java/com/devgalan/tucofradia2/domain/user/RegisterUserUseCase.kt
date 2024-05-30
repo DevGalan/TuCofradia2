@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.domain
+package com.devgalan.tucofradia2.domain.user
 
 import com.devgalan.tucofradia2.data.ResultActions
 import com.devgalan.tucofradia2.data.dto.RegisterUserDto

@@ -4,6 +4,6 @@ data class User(
     val id: Long,
     var username: String,
     val email: String,
-    var profileMessage: String,
-    val profilePicturePath: String
+    var profileMessage: String?,
+    val profilePicturePath: String?
 )
