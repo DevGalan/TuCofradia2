@@ -6,6 +6,7 @@ import com.devgalan.tucofradia2.data.dto.LoginUserDto
 import com.devgalan.tucofradia2.data.dto.RegisterUserDto
 import com.devgalan.tucofradia2.data.dto.UpdateUserDto
 import com.devgalan.tucofradia2.data.model.user.User
+import com.devgalan.tucofradia2.data.network.ApiService
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
@@ -13,9 +14,9 @@ import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
 import javax.inject.Inject
 
-class UserService @Inject constructor(private val api: UserApiClient) {
+class UserService @Inject constructor(private val api: UserApiClient) : ApiService() {
 
-    private final val ERROR_USER = User(-1, "", "", "", "")
+    private val ERROR_USER = User(-1, "", "", "", "")
 
     suspend fun getRandomUsers(amount: Int, resultActions: ResultActions<List<User>>): List<User> {
         return withContext(Dispatchers.IO) {
@@ -26,7 +27,10 @@ class UserService @Inject constructor(private val api: UserApiClient) {
         }
     }
 
-    suspend fun registerUser(registerUserDto: RegisterUserDto, resultActions: ResultActions<User>): User {
+    suspend fun registerUser(
+        registerUserDto: RegisterUserDto,
+        resultActions: ResultActions<User>
+    ): User {
         return withContext(Dispatchers.IO) {
             val response = api.registerUser(registerUserDto)
 
@@ -34,13 +38,13 @@ class UserService @Inject constructor(private val api: UserApiClient) {
                 val user = response.body()?.data ?: ERROR_USER
                 resultActions.onSuccess(user)
                 user
-            }
-            else {
+            } else {
                 val gson = Gson()
                 val type = object : TypeToken<ApiResponse<User>>() {}.type
                 val errorResponse: ApiResponse<User>? =
                     gson.fromJson(response.errorBody()?.string(), type)
-                val errorMessage = errorResponse?.message ?: "Error desconocido, código: ${response.code()}"
+                val errorMessage =
+                    errorResponse?.message ?: "Error desconocido, código: ${response.code()}"
                 resultActions.onError(errorMessage)
                 ERROR_USER
             }
@@ -55,8 +59,7 @@ class UserService @Inject constructor(private val api: UserApiClient) {
                 val user = response.body() ?: ERROR_USER
                 resultActions.onSuccess(user)
                 user
-            }
-            else {
+            } else {
                 if (response.code() == 404) {
                     resultActions.onError("Email o contraseñas incorrectos")
                 } else {
@@ -75,7 +78,11 @@ class UserService @Inject constructor(private val api: UserApiClient) {
         }
     }
 
-    suspend fun updateUser(userId: Long, user: UpdateUserDto, resultActions: ResultActions<User>): User {
+    suspend fun updateUser(
+        userId: Long,
+        user: UpdateUserDto,
+        resultActions: ResultActions<User>
+    ): User {
         return withContext(Dispatchers.IO) {
             val response = api.updateUser(userId, user)
 
@@ -83,29 +90,20 @@ class UserService @Inject constructor(private val api: UserApiClient) {
         }
     }
 
-    suspend fun updateUserImage(userId: Long, image: MultipartBody.Part, resultActions: ResultActions<User>) {
+    suspend fun updateUserImage(
+        userId: Long,
+        image: MultipartBody.Part,
+        resultActions: ResultActions<User>
+    ) {
         return withContext(Dispatchers.IO) {
             val response = api.updateUserImage(userId, image)
 
             if (response.isSuccessful) {
                 val user = response.body() ?: ERROR_USER
                 resultActions.onSuccess(user)
-            }
-            else {
+            } else {
                 resultActions.onError(response.code().toString())
             }
-        }
-    }
-
-    private fun <T> doResultActions(response: retrofit2.Response<T>, resultActions: ResultActions<T>, defaultValue: T): T {
-        if (response.isSuccessful) {
-            val data = response.body() ?: defaultValue
-            resultActions.onSuccess(data)
-            return data
-        }
-        else {
-            resultActions.onError(response.code().toString())
-            return defaultValue
         }
     }
 }

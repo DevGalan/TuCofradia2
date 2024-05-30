@@ -38,6 +38,6 @@ class NewsFragment : Fragment() {
 
     private fun initRecyclerView() {
         binding.rvNews.layoutManager = LinearLayoutManager(binding.rvNews.context)
-        binding.rvNews.adapter = NewsAdapter(NewsProvider().news)
+        binding.rvNews.adapter = NewsAdapter(newsViewModel.getNews())
     }
 }

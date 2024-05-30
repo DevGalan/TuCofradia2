@@ -5,11 +5,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.devgalan.tucofradia2.R
+import com.devgalan.tucofradia2.core.help.UnitConverser.Companion.dpToPx
 import com.devgalan.tucofradia2.data.model.news.News
 
 class NewsViewHolder(private val view: View) : ViewHolder(view) {
@@ -25,14 +25,17 @@ class NewsViewHolder(private val view: View) : ViewHolder(view) {
         tvNewsTitle.text = news.title
         tvNewsBody.text = news.body
         tvNewsDate.text = news.date
-        if (position != 0) {
-            val layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            layoutParams.setMargins(0, 32, 0, 0)
-            view.layoutParams = layoutParams
+
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        if (position == 0) {
+            layoutParams.setMargins(0, dpToPx(16, view), 0, dpToPx(16, view))
+        } else {
+            layoutParams.setMargins(0, 0, 0, dpToPx(16, view))
         }
+        view.layoutParams = layoutParams
     }
 
     private fun showImage(imagePath: String?) {

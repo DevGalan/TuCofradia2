@@ -34,6 +34,10 @@
         <item name="android:paddingBottom">16dp</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetLeft">0dp</item>
     </style>
 
     <style name="Button.Option">
@@ -62,8 +66,16 @@
         <item name="android:padding">16dp</item>
     </style>
 
-    <style name="ViewRoot" parent="Padding">
-        <item name="android:padding">16dp</item>
+    <style name="ViewRoot">
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+    </style>
+
+    <style name="ViewRoot.RecycleView">
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
     </style>
 
     <style name="EditText" parent="ListItem">

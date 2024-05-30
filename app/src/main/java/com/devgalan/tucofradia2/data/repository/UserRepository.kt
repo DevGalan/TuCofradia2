@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.data.repository.user
+package com.devgalan.tucofradia2.data.repository
 
 import com.devgalan.tucofradia2.data.ResultActions
 import com.devgalan.tucofradia2.data.dto.LoginUserDto
