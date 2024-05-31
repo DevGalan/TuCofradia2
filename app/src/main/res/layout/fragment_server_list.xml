@@ -8,23 +8,18 @@
     tools:context=".ui.serverList.ServerListFragment">
 
     <EditText
+        android:id="@+id/etSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/SearchText"
+        android:hint="Nombre..."
         />
-
+<!--TODO: Cambiar el HINT-->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/server_list"
+        android:id="@+id/rvServerList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        android:clipToPadding="false"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:overScrollMode="never"
-        android:background="@color/primary"
-        tools:listitem="@layout/item_admin_server" />
+        tools:listitem="@layout/item_join_server" />
 
 </LinearLayout>

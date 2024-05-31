@@ -8,5 +8,7 @@ data class Server(
     val code: String,
     val description: String,
     val gameMonth: Byte,
+    val amountPlayers: Int,
+    val maxPlayers: Int,
     val admin: User
 )

@@ -21,7 +21,11 @@
         android:id="@+id/homeFragment"
         android:name="com.devgalan.tucofradia2.ui.home.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_serverListFragment"
+            app:destination="@id/serverListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.devgalan.tucofradia2.ui.profile.ProfileFragment"
@@ -52,4 +56,9 @@
             android:id="@+id/action_signinFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/serverListFragment"
+        android:name="com.devgalan.tucofradia2.ui.serverList.ServerListFragment"
+        android:label="@string/servers"
+        tools:layout="@layout/fragment_server_list" />
 </navigation>

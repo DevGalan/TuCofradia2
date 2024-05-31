@@ -26,4 +26,8 @@
     <string name="edit">Editar</string>
     <string name="play">Jugar</string>
     <string name="save">Guardar</string>
+    <string name="join">Unirme</string>
+    <string name="players">Jugadores: %d/%d</string>
+    <string name="server_code">Código: %s</string>
+    <string name="servers">Servidores</string>
 </resources>
