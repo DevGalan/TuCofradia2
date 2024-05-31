@@ -10,13 +10,13 @@ class ServerListAdapter(private var serverList: List<Server>) : RecyclerView.Ada
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServerListViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return ServerListViewHolder(layoutInflater.inflate(R.layout.item_join_server, parent, false))
+        return ServerListViewHolder(layoutInflater.inflate(R.layout.item_server, parent, false))
     }
 
     override fun getItemCount() = serverList.size
 
     override fun onBindViewHolder(holder: ServerListViewHolder, position: Int) {
-        holder.render(serverList[position])
+        holder.render(serverList[position], position)
     }
 
     fun updateServers(serverList: List<Server>) {

@@ -61,19 +61,12 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btnJoinServer"
+        style="@style/Button.Action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnJoinServer"
-            style="@style/Button.Action"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/join" />
-
-    </LinearLayout>
+        android:layout_weight="1"
+        android:text="@string/join" />
 
 </LinearLayout>

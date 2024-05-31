@@ -14,8 +14,9 @@ class ServerProvider @Inject constructor() {
             "TC1",
             "Tu Cofradía 1",
             1,
-            6,
             10,
+            10,
+            true,
             User(1, "admin", "admin", null, null)),
         Server(
             2,
@@ -25,6 +26,7 @@ class ServerProvider @Inject constructor() {
             2,
             6,
             10,
+            false,
             User(1, "admin", "admin", null, null)),
         Server(
             3,
@@ -34,6 +36,7 @@ class ServerProvider @Inject constructor() {
             3,
             6,
             10,
+            false,
             User(1, "admin", "admin", null, null)),
         Server(
             4,
@@ -43,6 +46,7 @@ class ServerProvider @Inject constructor() {
             4,
             6,
             10,
+            true,
             User(1, "admin", "admin", null, null)),
         Server(
             5,
@@ -52,6 +56,7 @@ class ServerProvider @Inject constructor() {
             5,
             6,
             10,
+            true,
             User(1, "admin", "admin", null, null)),
         Server(
             6,
@@ -61,6 +66,7 @@ class ServerProvider @Inject constructor() {
             6,
             6,
             10,
+            true,
             User(1, "admin", "admin", null, null)),
         Server(
             7,
@@ -70,6 +76,7 @@ class ServerProvider @Inject constructor() {
             7,
             6,
             10,
+            false,
             User(1, "admin", "admin", null, null))
     )
 }

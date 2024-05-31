@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/primary">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_cancel"
+        app:fabSize="mini"
+        app:tint="@color/primary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etName"
+            style="@style/EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1"
+            android:maxLength="40"
+            android:hint="@string/name" />
+
+        <EditText
+            android:id="@+id/etCode"
+            style="@style/EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="255"
+            android:hint="@string/message" />
+
+        <CheckBox
+            android:id="@+id/cbPublic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/_public"
+            style="@style/Checkbox"/>
+
+        <CheckBox
+            android:id="@+id/cbFull"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/full"
+            style="@style/Checkbox"/>
+
+        <Button
+            android:id="@+id/btnClear"
+            style="@style/Button.Option.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/clear" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

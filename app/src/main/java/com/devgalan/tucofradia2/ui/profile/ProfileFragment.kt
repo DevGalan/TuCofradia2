@@ -103,8 +103,8 @@ class ProfileFragment : Fragment() {
         val username = user?.username ?: ""
         val profileMessage = user?.profileMessage ?: ""
 
-        etName.hint = "Nombre de usuario"
-        etMessage.hint = "Mensaje de perfil"
+        etName.hint = etName.context.getString(R.string.username_hint)
+        etMessage.hint = etMessage.context.getString(R.string.profile_message_hint)
 
         if (username.isNotEmpty()) {
             etName.setText(username)

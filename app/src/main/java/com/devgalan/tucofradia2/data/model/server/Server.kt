@@ -10,5 +10,6 @@ data class Server(
     val gameMonth: Byte,
     val amountPlayers: Int,
     val maxPlayers: Int,
+    val public: Boolean,
     val admin: User
 )

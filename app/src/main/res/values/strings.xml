@@ -19,7 +19,7 @@
     <string name="login">Inicio sesión</string>
     <string name="register">Registrarme</string>
     <string name="log">Iniciar sesión</string>
-    <string name="username_hint">Nombre</string>
+    <string name="name">Nombre</string>
     <string name="repeat_password_hint">Repite la contraseña</string>
     <string name="error">Error</string>
     <string name="logout">Cerrar sesión</string>
@@ -30,4 +30,14 @@
     <string name="players">Jugadores: %d/%d</string>
     <string name="server_code">Código: %s</string>
     <string name="servers">Servidores</string>
+    <string name="filters">Filtros</string>
+    <string name="search">Buscar</string>
+    <string name="clear">Limpiar</string>
+    <string name="_public">Público</string>
+    <string name="message">Mensaje</string>
+    <string name="server_name">Nombre del servidor</string>
+    <string name="server_code_hint">Código del servidor</string>
+    <string name="username_hint">Nombre de usuario</string>
+    <string name="profile_message_hint">Mensaje de perfil</string>
+    <string name="full">Llenos</string>
 </resources>

@@ -15,9 +15,14 @@ class ServerListViewModel @Inject constructor(
 
     private var serverList: MutableList<Server> = serverProvider.servers.toMutableList()
 
+    fun onCreate() {
+//        getServerListUserCase()
+        serverList = serverProvider.servers.toMutableList()
+    }
+
     fun getServerList() = serverList
 
-    fun filterServerList(query: String): List<Server> {
-        return serverList.filter { it.code.contains(query, ignoreCase = true) }
+    fun filterServerList(name: String, code: String, public: Boolean, full: Boolean): List<Server> {
+        return serverList.filter { it.name.contains(name, ignoreCase = true) && it.code.contains(code, ignoreCase = true) && it.public == public && (it.amountPlayers < it.maxPlayers || full) }
     }
 }
