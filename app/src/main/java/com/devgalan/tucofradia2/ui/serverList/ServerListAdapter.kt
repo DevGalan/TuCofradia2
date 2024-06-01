@@ -6,17 +6,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devgalan.tucofradia2.R
 import com.devgalan.tucofradia2.data.model.server.Server
 
-class ServerListAdapter(private var serverList: List<Server>) : RecyclerView.Adapter<ServerListViewHolder>() {
+class ServerListAdapter(private var serverList: List<Server>, private val onJoinButtonPressed: (Server) -> Unit) : RecyclerView.Adapter<ServerListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServerListViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return ServerListViewHolder(layoutInflater.inflate(R.layout.item_server, parent, false))
+        return ServerListViewHolder(layoutInflater.inflate(R.layout.item_join_server, parent, false))
     }
 
     override fun getItemCount() = serverList.size
 
     override fun onBindViewHolder(holder: ServerListViewHolder, position: Int) {
-        holder.render(serverList[position], position)
+        holder.render(serverList[position], position, onJoinButtonPressed)
     }
 
     fun updateServers(serverList: List<Server>) {

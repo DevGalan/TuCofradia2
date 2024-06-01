@@ -62,11 +62,10 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnJoinServer"
-        style="@style/Button.Action"
-        android:layout_width="match_parent"
+        android:id="@+id/btnJoin"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/join" />
+        android:layout_width="match_parent"
+        style="@style/Button.Action"
+        android:text="@string/join"/>
 
 </LinearLayout>

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devgalan.tucofradia2.R
+import com.devgalan.tucofradia2.data.model.server.Server
 import com.devgalan.tucofradia2.databinding.FragmentServerListBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
@@ -121,7 +122,9 @@ class ServerListFragment : Fragment() {
 
     private fun initUI() {
         val filteredServers = serverListViewModel.filterServerList("", "", true, false)
-        serverListAdapter = ServerListAdapter(filteredServers)
+        serverListAdapter = ServerListAdapter(filteredServers) { server ->
+            serverListViewModel.joinServer(server)
+        }
         initRecyclerView()
     }
 

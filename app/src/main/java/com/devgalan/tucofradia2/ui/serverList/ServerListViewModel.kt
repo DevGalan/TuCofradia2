@@ -20,9 +20,11 @@ class ServerListViewModel @Inject constructor(
         serverList = serverProvider.servers.toMutableList()
     }
 
-    fun getServerList() = serverList
-
     fun filterServerList(name: String, code: String, public: Boolean, full: Boolean): List<Server> {
         return serverList.filter { it.name.contains(name, ignoreCase = true) && it.code.contains(code, ignoreCase = true) && it.public == public && (it.amountPlayers < it.maxPlayers || full) }
+    }
+
+    fun joinServer(server: Server) {
+        println(server.toString())
     }
 }
