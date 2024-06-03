@@ -2,6 +2,7 @@ package com.devgalan.tucofradia2.di
 
 import com.devgalan.tucofradia2.core.help.RetrofitHelper
 import com.devgalan.tucofradia2.data.network.news.NewsApiClient
+import com.devgalan.tucofradia2.data.network.server.ServerApiClient
 import com.devgalan.tucofradia2.data.network.user.UserApiClient
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -50,5 +51,11 @@ object NetworkModule {
     @Provides
     fun provideNewsApiClient(): NewsApiClient {
         return provideRetrofit().create(NewsApiClient::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideServersApiClient(): ServerApiClient {
+        return provideRetrofit().create(ServerApiClient::class.java)
     }
 }

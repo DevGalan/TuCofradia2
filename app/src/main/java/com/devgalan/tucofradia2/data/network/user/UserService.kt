@@ -20,10 +20,13 @@ class UserService @Inject constructor(private val api: UserApiClient) : ApiServi
 
     suspend fun getRandomUsers(amount: Int, resultActions: ResultActions<List<User>>): List<User> {
         return withContext(Dispatchers.IO) {
-            val response =
-                api.getRandomUsers(amount.toString())
-
-            doResultActions(response, resultActions, emptyList())
+            try {
+                val response = api.getRandomUsers(amount.toString())
+                doResultActions(response, resultActions, emptyList())
+            } catch (e: Exception) {
+                resultActions.onError(e.message ?: "Error desconocido")
+                emptyList()
+            }
         }
     }
 
@@ -32,20 +35,25 @@ class UserService @Inject constructor(private val api: UserApiClient) : ApiServi
         resultActions: ResultActions<User>
     ): User {
         return withContext(Dispatchers.IO) {
-            val response = api.registerUser(registerUserDto)
+            try {
+                val response = api.registerUser(registerUserDto)
 
-            if (response.isSuccessful) {
-                val user = response.body()?.data ?: ERROR_USER
-                resultActions.onSuccess(user)
-                user
-            } else {
-                val gson = Gson()
-                val type = object : TypeToken<ApiResponse<User>>() {}.type
-                val errorResponse: ApiResponse<User>? =
-                    gson.fromJson(response.errorBody()?.string(), type)
-                val errorMessage =
-                    errorResponse?.message ?: "Error desconocido, código: ${response.code()}"
-                resultActions.onError(errorMessage)
+                if (response.isSuccessful) {
+                    val user = response.body()?.data ?: ERROR_USER
+                    resultActions.onSuccess(user)
+                    user
+                } else {
+                    val gson = Gson()
+                    val type = object : TypeToken<ApiResponse<User>>() {}.type
+                    val errorResponse: ApiResponse<User>? =
+                        gson.fromJson(response.errorBody()?.string(), type)
+                    val errorMessage =
+                        errorResponse?.message ?: "Error desconocido, código: ${response.code()}"
+                    resultActions.onError(errorMessage)
+                    ERROR_USER
+                }
+            } catch (e: Exception) {
+                resultActions.onError(e.message ?: "Error desconocido")
                 ERROR_USER
             }
         }
@@ -53,18 +61,23 @@ class UserService @Inject constructor(private val api: UserApiClient) : ApiServi
 
     suspend fun loginUser(loginUserDto: LoginUserDto, resultActions: ResultActions<User>): User {
         return withContext(Dispatchers.IO) {
-            val response = api.loginUser(loginUserDto)
+            try {
+                val response = api.loginUser(loginUserDto)
 
-            if (response.isSuccessful) {
-                val user = response.body() ?: ERROR_USER
-                resultActions.onSuccess(user)
-                user
-            } else {
-                if (response.code() == 404) {
-                    resultActions.onError("Email o contraseñas incorrectos")
+                if (response.isSuccessful) {
+                    val user = response.body() ?: ERROR_USER
+                    resultActions.onSuccess(user)
+                    user
                 } else {
-                    resultActions.onError(response.code().toString())
+                    if (response.code() == 404) {
+                        resultActions.onError("Email o contraseñas incorrectos")
+                    } else {
+                        resultActions.onError(response.code().toString())
+                    }
+                    ERROR_USER
                 }
+            } catch (e: Exception) {
+                resultActions.onError(e.message ?: "Error desconocido")
                 ERROR_USER
             }
         }
@@ -72,9 +85,14 @@ class UserService @Inject constructor(private val api: UserApiClient) : ApiServi
 
     suspend fun getUserById(userId: Long, resultActions: ResultActions<User>): User {
         return withContext(Dispatchers.IO) {
-            val response = api.getUserById(userId)
+            try {
+                val response = api.getUserById(userId)
 
-            doResultActions(response, resultActions, ERROR_USER)
+                doResultActions(response, resultActions, ERROR_USER)
+            } catch (e: Exception) {
+                resultActions.onError(e.message ?: "Error desconocido")
+                ERROR_USER
+            }
         }
     }
 
@@ -84,9 +102,14 @@ class UserService @Inject constructor(private val api: UserApiClient) : ApiServi
         resultActions: ResultActions<User>
     ): User {
         return withContext(Dispatchers.IO) {
-            val response = api.updateUser(userId, user)
+            try {
+                val response = api.updateUser(userId, user)
 
-            doResultActions(response, resultActions, ERROR_USER)
+                doResultActions(response, resultActions, ERROR_USER)
+            } catch (e: Exception) {
+                resultActions.onError(e.message ?: "Error desconocido")
+                ERROR_USER
+            }
         }
     }
 
@@ -96,13 +119,17 @@ class UserService @Inject constructor(private val api: UserApiClient) : ApiServi
         resultActions: ResultActions<User>
     ) {
         return withContext(Dispatchers.IO) {
-            val response = api.updateUserImage(userId, image)
+            try {
+                val response = api.updateUserImage(userId, image)
 
-            if (response.isSuccessful) {
-                val user = response.body() ?: ERROR_USER
-                resultActions.onSuccess(user)
-            } else {
-                resultActions.onError(response.code().toString())
+                if (response.isSuccessful) {
+                    val user = response.body() ?: ERROR_USER
+                    resultActions.onSuccess(user)
+                } else {
+                    resultActions.onError(response.code().toString())
+                }
+            } catch (e: Exception) {
+                resultActions.onError(e.message ?: "Error desconocido")
             }
         }
     }
