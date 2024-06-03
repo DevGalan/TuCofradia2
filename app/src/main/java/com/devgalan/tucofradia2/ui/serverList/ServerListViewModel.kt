@@ -1,5 +1,6 @@
 package com.devgalan.tucofradia2.ui.serverList
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devgalan.tucofradia2.data.ResultActions
@@ -16,12 +17,14 @@ class ServerListViewModel @Inject constructor(
     private val getServersUseCase: GetServersUseCase
 ) : ViewModel() {
 
-    private var serverList: List<Server> = serverProvider.servers
+    private var serverList: MutableLiveData<List<Server>> = MutableLiveData()
 
     fun onCreate() {
+        serverList.value = serverProvider.servers
         viewModelScope.launch {
             getServersUseCase(ResultActions({
-                serverList = it
+                serverList.postValue(it)
+                serverProvider.servers = it
             }, {
                 println("Error getting servers: $it")
             }))
@@ -29,7 +32,12 @@ class ServerListViewModel @Inject constructor(
     }
 
     fun filterServerList(name: String, code: String, public: Boolean, full: Boolean): List<Server> {
-        return serverList.filter { it.name.contains(name, ignoreCase = true) && it.code.contains(code, ignoreCase = true) && it.public == public && (it.amountPlayers < it.maxPlayers || full) }
+        return serverList.value?.filter {
+            it.name.contains(name, ignoreCase = true) && it.code.contains(
+                code,
+                ignoreCase = true
+            ) && it.public == public && (it.amountPlayers < it.maxPlayers || full)
+        } ?: emptyList()
     }
 
     fun joinServer(server: Server) {
