@@ -6,7 +6,8 @@ import javax.inject.Singleton
 
 @Singleton
 class ServerProvider @Inject constructor() {
-//    var servers: List<Server> = emptyList()
+    //    var servers: List<Server> = emptyList()
+    var myServers: List<Server> = emptyList()
     var servers: List<Server> = listOf(
         Server(
             1,
@@ -17,7 +18,8 @@ class ServerProvider @Inject constructor() {
             10,
             10,
             true,
-            User(1, "admin", "admin", null, null)),
+            User(1, "admin", "admin", null, null)
+        ),
         Server(
             2,
             "Tu Cofradía 2",
@@ -27,7 +29,8 @@ class ServerProvider @Inject constructor() {
             6,
             10,
             false,
-            User(1, "admin", "admin", null, null)),
+            User(1, "admin", "admin", null, null)
+        ),
         Server(
             3,
             "Tu Cofradía 3",
@@ -37,7 +40,8 @@ class ServerProvider @Inject constructor() {
             6,
             10,
             false,
-            User(1, "admin", "admin", null, null)),
+            User(1, "admin", "admin", null, null)
+        ),
         Server(
             4,
             "Tu Cofradía 4",
@@ -47,7 +51,8 @@ class ServerProvider @Inject constructor() {
             6,
             10,
             true,
-            User(1, "admin", "admin", null, null)),
+            User(1, "admin", "admin", null, null)
+        ),
         Server(
             5,
             "Tu Cofradía 5",
@@ -57,7 +62,8 @@ class ServerProvider @Inject constructor() {
             6,
             10,
             true,
-            User(1, "admin", "admin", null, null)),
+            User(1, "admin", "admin", null, null)
+        ),
         Server(
             6,
             "Tu Cofradía 6",
@@ -67,7 +73,8 @@ class ServerProvider @Inject constructor() {
             6,
             10,
             true,
-            User(1, "admin", "admin", null, null)),
+            User(1, "admin", "admin", null, null)
+        ),
         Server(
             7,
             "Tu Cofradía 7",
@@ -77,6 +84,7 @@ class ServerProvider @Inject constructor() {
             6,
             10,
             false,
-            User(1, "admin", "admin", null, null))
+            User(1, "admin", "admin", null, null)
+        )
     )
 }

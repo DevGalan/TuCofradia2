@@ -1,6 +1,7 @@
 package com.devgalan.tucofradia2.data.repository
 
 import com.devgalan.tucofradia2.data.ResultActions
+import com.devgalan.tucofradia2.data.dto.UpdateServerDto
 import com.devgalan.tucofradia2.data.model.server.Server
 import com.devgalan.tucofradia2.data.model.server.ServerProvider
 import com.devgalan.tucofradia2.data.network.server.ServerService
@@ -13,5 +14,9 @@ class ServerRepository  @Inject constructor(
     suspend fun getServers(resultActions: ResultActions<List<Server>>) {
         val response = api.getServers(resultActions)
         serverProvider.servers = (response)
+    }
+
+    suspend fun updateServer(id: Long, updateServerDto: UpdateServerDto, resultActions: ResultActions<Server>) {
+        val response = api.updateServer(id, updateServerDto, resultActions)
     }
 }
