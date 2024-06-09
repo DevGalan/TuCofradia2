@@ -7,6 +7,7 @@ import javax.inject.Singleton
 @Singleton
 class ServerProvider @Inject constructor() {
     //    var servers: List<Server> = emptyList()
+    var playingServer: Server? = Server(-1, "", "", "", -1, -1, -1, false, User(-1, "", "", null, null))
     var myServers: List<Server> = emptyList()
     var servers: List<Server> = listOf(
         Server(
