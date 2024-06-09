@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.data.dto
+package com.devgalan.tucofradia2.data.dto.user
 
 data class RegisterUserDto(
     val username: String,

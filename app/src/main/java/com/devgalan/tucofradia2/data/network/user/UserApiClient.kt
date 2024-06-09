@@ -1,9 +1,9 @@
 package com.devgalan.tucofradia2.data.network.user
 
 import com.devgalan.tucofradia2.data.ApiResponse
-import com.devgalan.tucofradia2.data.dto.LoginUserDto
-import com.devgalan.tucofradia2.data.dto.RegisterUserDto
-import com.devgalan.tucofradia2.data.dto.UpdateUserDto
+import com.devgalan.tucofradia2.data.dto.user.LoginUserDto
+import com.devgalan.tucofradia2.data.dto.user.RegisterUserDto
+import com.devgalan.tucofradia2.data.dto.user.UpdateUserDto
 import com.devgalan.tucofradia2.data.model.user.User
 import okhttp3.MultipartBody
 import retrofit2.Response

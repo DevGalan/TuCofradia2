@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devgalan.tucofradia2.R
-import com.devgalan.tucofradia2.data.dto.RegisterUserDto
+import com.devgalan.tucofradia2.data.dto.user.RegisterUserDto
 import com.devgalan.tucofradia2.databinding.FragmentSigninBinding
 import dagger.hilt.android.AndroidEntryPoint
 

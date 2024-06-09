@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devgalan.tucofradia2.core.help.ImageHelper
 import com.devgalan.tucofradia2.data.ResultActions
-import com.devgalan.tucofradia2.data.dto.UpdateUserDto
+import com.devgalan.tucofradia2.data.dto.user.UpdateUserDto
 import com.devgalan.tucofradia2.data.model.user.User
 import com.devgalan.tucofradia2.data.model.user.UserProvider
 import com.devgalan.tucofradia2.data.storage.StorageDataAccess

@@ -1,8 +1,8 @@
 package com.devgalan.tucofradia2.data.network.server
 
 import com.devgalan.tucofradia2.data.ResultActions
-import com.devgalan.tucofradia2.data.dto.JoinServerDto
-import com.devgalan.tucofradia2.data.dto.UpdateServerDto
+import com.devgalan.tucofradia2.data.dto.server.JoinServerDto
+import com.devgalan.tucofradia2.data.dto.server.UpdateServerDto
 import com.devgalan.tucofradia2.data.model.server.Server
 import com.devgalan.tucofradia2.data.model.user.User
 import com.devgalan.tucofradia2.data.network.ApiService

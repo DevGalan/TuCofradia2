@@ -3,7 +3,7 @@ package com.devgalan.tucofradia2
 import android.app.Application
 import android.util.Log
 import com.devgalan.tucofradia2.data.ResultActions
-import com.devgalan.tucofradia2.data.dto.LoginUserDto
+import com.devgalan.tucofradia2.data.dto.user.LoginUserDto
 import com.devgalan.tucofradia2.data.storage.StorageDataAccess
 import com.devgalan.tucofradia2.domain.news.GetNewsUseCase
 import com.devgalan.tucofradia2.domain.user.LoginUserUseCase

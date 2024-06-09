@@ -1,7 +1,7 @@
 package com.devgalan.tucofradia2.domain.server
 
 import com.devgalan.tucofradia2.data.ResultActions
-import com.devgalan.tucofradia2.data.dto.UpdateServerDto
+import com.devgalan.tucofradia2.data.dto.server.UpdateServerDto
 import com.devgalan.tucofradia2.data.model.server.Server
 import com.devgalan.tucofradia2.data.repository.ServerRepository
 import javax.inject.Inject

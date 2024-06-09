@@ -1,7 +1,7 @@
 package com.devgalan.tucofradia2.data.network.server
 
-import com.devgalan.tucofradia2.data.dto.JoinServerDto
-import com.devgalan.tucofradia2.data.dto.UpdateServerDto
+import com.devgalan.tucofradia2.data.dto.server.JoinServerDto
+import com.devgalan.tucofradia2.data.dto.server.UpdateServerDto
 import com.devgalan.tucofradia2.data.model.server.Server
 import retrofit2.Response
 import retrofit2.http.Body

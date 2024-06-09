@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devgalan.tucofradia2.core.help.AntiSpamHelper
 import com.devgalan.tucofradia2.data.ResultActions
-import com.devgalan.tucofradia2.data.dto.LoginUserDto
+import com.devgalan.tucofradia2.data.dto.user.LoginUserDto
 import com.devgalan.tucofradia2.data.model.user.User
 import com.devgalan.tucofradia2.data.storage.StorageDataAccess
 import com.devgalan.tucofradia2.domain.user.LoginUserUseCase

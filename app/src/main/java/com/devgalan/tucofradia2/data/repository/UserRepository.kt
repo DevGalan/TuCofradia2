@@ -1,9 +1,9 @@
 package com.devgalan.tucofradia2.data.repository
 
 import com.devgalan.tucofradia2.data.ResultActions
-import com.devgalan.tucofradia2.data.dto.LoginUserDto
-import com.devgalan.tucofradia2.data.dto.RegisterUserDto
-import com.devgalan.tucofradia2.data.dto.UpdateUserDto
+import com.devgalan.tucofradia2.data.dto.user.LoginUserDto
+import com.devgalan.tucofradia2.data.dto.user.RegisterUserDto
+import com.devgalan.tucofradia2.data.dto.user.UpdateUserDto
 import com.devgalan.tucofradia2.data.model.user.User
 import com.devgalan.tucofradia2.data.model.user.UserProvider
 import com.devgalan.tucofradia2.data.network.user.UserService
