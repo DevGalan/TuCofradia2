@@ -40,4 +40,6 @@
     <string name="username_hint">Nombre de usuario</string>
     <string name="profile_message_hint">Mensaje de perfil</string>
     <string name="full">Llenos</string>
+    <string name="server_full">El servidor está lleno.</string>
+    <string name="back">Volver</string>
 </resources>

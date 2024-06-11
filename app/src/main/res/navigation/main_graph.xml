@@ -60,5 +60,14 @@
         android:id="@+id/serverListFragment"
         android:name="com.devgalan.tucofradia2.ui.serverList.ServerListFragment"
         android:label="@string/servers"
-        tools:layout="@layout/fragment_server_list" />
+        tools:layout="@layout/fragment_server_list" >
+        <action
+            android:id="@+id/action_serverListFragment_to_gameActivity"
+            app:destination="@id/gameActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/gameActivity"
+        android:name="com.devgalan.tucofradia2.ui.GameActivity"
+        android:label="activity_game"
+        tools:layout="@layout/activity_game" />
 </navigation>

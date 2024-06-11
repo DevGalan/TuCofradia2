@@ -6,7 +6,7 @@ import com.devgalan.tucofradia2.data.model.server.Server
 import com.devgalan.tucofradia2.data.repository.ServerRepository
 import javax.inject.Inject
 
-class JoinServerUserCase @Inject constructor(private val repository: ServerRepository) {
+class JoinServerUseCase @Inject constructor(private val repository: ServerRepository) {
     suspend operator fun invoke(
         joinServerDto: JoinServerDto,
         resultActions: ResultActions<Server>

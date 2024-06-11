@@ -12,4 +12,8 @@ data class Server(
     val maxPlayers: Int,
     val public: Boolean,
     val admin: User
-)
+) {
+    fun isFull(): Boolean {
+        return amountPlayers >= maxPlayers
+    }
+}

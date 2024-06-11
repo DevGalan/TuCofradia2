@@ -4,9 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devgalan.tucofradia2.data.ResultActions
+import com.devgalan.tucofradia2.data.dto.server.JoinServerDto
 import com.devgalan.tucofradia2.data.model.server.Server
 import com.devgalan.tucofradia2.data.model.server.ServerProvider
 import com.devgalan.tucofradia2.domain.server.GetServersUseCase
+import com.devgalan.tucofradia2.domain.server.JoinServerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ServerListViewModel @Inject constructor(
     private val serverProvider: ServerProvider,
-    private val getServersUseCase: GetServersUseCase
+    private val getServersUseCase: GetServersUseCase,
+    private val joinServerUseCase: JoinServerUseCase
 ) : ViewModel() {
 
     private var serverList: MutableLiveData<List<Server>> = MutableLiveData()
@@ -31,6 +34,10 @@ class ServerListViewModel @Inject constructor(
         }
     }
 
+    fun setJoinedServer(server: Server) {
+        serverProvider.playingServer = server
+    }
+
     fun filterServerList(name: String, code: String, public: Boolean, full: Boolean): List<Server> {
         return serverList.value?.filter {
             it.name.contains(name, ignoreCase = true) && it.code.contains(
@@ -40,7 +47,12 @@ class ServerListViewModel @Inject constructor(
         } ?: emptyList()
     }
 
-    fun joinServer(server: Server) {
-        println(server.toString())
+    fun joinServer(serverCode: String, serverPassword: String, resultActions: ResultActions<Server>) {
+        viewModelScope.launch {
+            joinServerUseCase(
+                JoinServerDto(serverCode, serverPassword),
+                resultActions
+            )
+        }
     }
 }

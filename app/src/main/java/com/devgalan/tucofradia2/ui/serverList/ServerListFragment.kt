@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devgalan.tucofradia2.R
+import com.devgalan.tucofradia2.data.ResultActions
 import com.devgalan.tucofradia2.data.model.server.Server
 import com.devgalan.tucofradia2.databinding.FragmentServerListBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -123,9 +125,61 @@ class ServerListFragment : Fragment() {
     private fun initUI() {
         val filteredServers = serverListViewModel.filterServerList("", "", true, false)
         serverListAdapter = ServerListAdapter(filteredServers) { server ->
-            serverListViewModel.joinServer(server)
+            if (server.isFull()) {
+                showServerFullDialog("")
+            }
+            if (server.public) {
+                serverListViewModel.joinServer(server.code, "", ResultActions({
+                    navigateToGameScreen(server)
+                }, {
+                    showServerFullDialog("Error joining server: $it")
+                }))
+            } else {
+                showEnterPasswordDialog(server)
+            }
         }
         initRecyclerView()
+    }
+
+    private fun showServerFullDialog(text: String) {
+        val dialog = Dialog(binding.rvServerList.context)
+        dialog.setContentView(R.layout.dialog_error_join_server)
+
+        val btnBack = dialog.findViewById<Button>(R.id.btnBack)
+
+        if (text.isNotEmpty()) {
+            val tvTitle = dialog.findViewById<TextView>(R.id.tvTitle)
+            tvTitle.text = text
+        }
+
+        btnBack.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun showEnterPasswordDialog(server: Server) {
+        val dialog = Dialog(binding.rvServerList.context)
+        dialog.setContentView(R.layout.dialog_password_join_server)
+
+        val etPassword = dialog.findViewById<EditText>(R.id.etPassword)
+        val btnJoin = dialog.findViewById<Button>(R.id.btnJoin)
+
+        btnJoin.setOnClickListener {
+            dialog.dismiss()
+            serverListViewModel.joinServer(server.code, etPassword.text.toString(), ResultActions({
+                navigateToGameScreen(server)
+            }, {
+                showServerFullDialog("Error joining server: $it")
+            }))
+        }
+
+        dialog.show()
+    }
+
+    private fun navigateToGameScreen(server: Server) {
+        serverListViewModel.setJoinedServer(server)
     }
 
     private fun initRecyclerView() {
