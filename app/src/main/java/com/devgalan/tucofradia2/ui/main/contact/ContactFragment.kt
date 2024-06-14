@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.ui.contact
+package com.devgalan.tucofradia2.ui.main.contact
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

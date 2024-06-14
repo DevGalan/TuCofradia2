@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.ui.home
+package com.devgalan.tucofradia2.ui.main.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

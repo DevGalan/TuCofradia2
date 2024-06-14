@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.ui.news
+package com.devgalan.tucofradia2.ui.main.news
 
 import androidx.lifecycle.ViewModel
 import com.devgalan.tucofradia2.data.model.news.NewsProvider

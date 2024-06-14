@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.ui.auth.login
+package com.devgalan.tucofradia2.ui.main.auth.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

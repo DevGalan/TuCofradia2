@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.ui.serverList
+package com.devgalan.tucofradia2.ui.main.serverList
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

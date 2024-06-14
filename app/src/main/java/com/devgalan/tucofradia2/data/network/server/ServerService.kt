@@ -26,7 +26,26 @@ class ServerService @Inject constructor(private val api: ServerApiClient) : ApiS
         }
     }
 
-    suspend fun updateServer(id: Long, updateServerDto: UpdateServerDto, resultActions: ResultActions<Server>): Server {
+    suspend fun getMyServers(
+        userId: Long,
+        resultActions: ResultActions<List<Server>>
+    ): List<Server> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = api.getMyServers(userId)
+                doResultActions(response, resultActions, emptyList())
+            } catch (e: Exception) {
+                resultActions.onError(e.message ?: "Error desconocido")
+                emptyList()
+            }
+        }
+    }
+
+    suspend fun updateServer(
+        id: Long,
+        updateServerDto: UpdateServerDto,
+        resultActions: ResultActions<Server>
+    ): Server {
         return withContext(Dispatchers.IO) {
             try {
                 val response = api.updateServer(id, updateServerDto)
@@ -38,7 +57,10 @@ class ServerService @Inject constructor(private val api: ServerApiClient) : ApiS
         }
     }
 
-    suspend fun joinServer(joinServerDto: JoinServerDto, resultActions: ResultActions<Server>): Server {
+    suspend fun joinServer(
+        joinServerDto: JoinServerDto,
+        resultActions: ResultActions<Server>
+    ): Server {
         return withContext(Dispatchers.IO) {
             try {
                 val response = api.joinServer(joinServerDto)
@@ -46,6 +68,17 @@ class ServerService @Inject constructor(private val api: ServerApiClient) : ApiS
             } catch (e: Exception) {
                 resultActions.onError(e.message ?: "Error desconocido")
                 ERROR_SERVER
+            }
+        }
+    }
+
+    suspend fun leaveServer(serverId: Long, userId: Long, resultActions: ResultActions<Unit>) {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = api.leaveServer(serverId, userId)
+                doResultActions(response, resultActions, Unit)
+            } catch (e: Exception) {
+                resultActions.onError(e.message ?: "Error desconocido")
             }
         }
     }

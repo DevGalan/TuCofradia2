@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.ui.news
+package com.devgalan.tucofradia2.ui.main.news
 
 import android.os.Bundle
 import android.view.LayoutInflater

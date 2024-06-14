@@ -58,6 +58,10 @@
         <item name="android:layout_margin">8dp</item>
     </style>
 
+    <style name="Button.Action.Secondary">
+        <item name="backgroundTint">@color/secondary</item>
+    </style>
+
     <style name="Error">
         <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">14sp</item>

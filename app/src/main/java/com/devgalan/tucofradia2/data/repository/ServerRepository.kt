@@ -17,6 +17,11 @@ class ServerRepository  @Inject constructor(
         serverProvider.servers = (response)
     }
 
+    suspend fun getMyServers(userId: Long, resultActions: ResultActions<List<Server>>) {
+        val response = api.getMyServers(userId, resultActions)
+        serverProvider.myServers = (response)
+    }
+
     suspend fun updateServer(id: Long, updateServerDto: UpdateServerDto, resultActions: ResultActions<Server>) {
         api.updateServer(id, updateServerDto, resultActions)
     }
@@ -24,5 +29,9 @@ class ServerRepository  @Inject constructor(
     suspend fun joinServer(joinServerDto: JoinServerDto, resultActions: ResultActions<Server>) {
         val response = api.joinServer(joinServerDto, resultActions)
         serverProvider.playingServer = (response)
+    }
+
+    suspend fun leaveServer(serverId: Long, userId: Long, resultActions: ResultActions<Unit>) {
+        api.leaveServer(serverId, userId, resultActions)
     }
 }

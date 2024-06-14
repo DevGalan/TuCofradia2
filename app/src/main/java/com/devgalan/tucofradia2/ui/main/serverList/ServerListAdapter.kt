@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.ui.serverList
+package com.devgalan.tucofradia2.ui.main.serverList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ class ServerListAdapter(private var serverList: List<Server>, private val onJoin
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServerListViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return ServerListViewHolder(layoutInflater.inflate(R.layout.item_join_server, parent, false))
+        return ServerListViewHolder(layoutInflater.inflate(R.layout.item_server, parent, false))
     }
 
     override fun getItemCount() = serverList.size

@@ -6,11 +6,11 @@ data class Server(
     val id: Long,
     val name: String,
     val code: String,
-    val description: String,
-    val gameMonth: Byte,
-    val amountPlayers: Int,
-    val maxPlayers: Int,
-    val public: Boolean,
+    var description: String,
+    var gameMonth: Byte,
+    var amountPlayers: Byte,
+    var maxPlayers: Byte,
+    var public: Boolean,
     val admin: User
 ) {
     fun isFull(): Boolean {

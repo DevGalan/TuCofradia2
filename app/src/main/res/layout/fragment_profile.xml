@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.profile.ProfileFragment">
+    tools:context=".ui.main.profile.ProfileFragment">
 
     <androidx.cardview.widget.CardView
         style="@style/Card"

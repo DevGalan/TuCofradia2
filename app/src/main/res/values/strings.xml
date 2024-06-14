@@ -42,4 +42,12 @@
     <string name="full">Llenos</string>
     <string name="server_full">El servidor está lleno.</string>
     <string name="back">Volver</string>
+    <string name="guild_name_hint">Nombre de la cofradía</string>
+    <string name="remember">Recuérdame</string>
+    <string name="create_guild">Crear cofradía</string>
+    <string name="guild_cuote_hint">Cuota</string>
+    <string name="leave">Salir</string>
+    <string name="leave_server">¿Desea abandonar el servidor?</string>
+    <string name="description">Descripción</string>
+    <string name="max_players">Máximos jugadores</string>
 </resources>

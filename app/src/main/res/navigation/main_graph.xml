@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.devgalan.tucofradia2.ui.auth.login.LoginFragment"
+        android:name="com.devgalan.tucofradia2.ui.main.auth.login.LoginFragment"
         android:label="@string/auth"
         tools:layout="@layout/fragment_login" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.devgalan.tucofradia2.ui.home.HomeFragment"
+        android:name="com.devgalan.tucofradia2.ui.main.home.HomeFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.devgalan.tucofradia2.ui.profile.ProfileFragment"
+        android:name="com.devgalan.tucofradia2.ui.main.profile.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -37,17 +37,17 @@
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.devgalan.tucofradia2.ui.news.NewsFragment"
+        android:name="com.devgalan.tucofradia2.ui.main.news.NewsFragment"
         android:label="@string/news"
         tools:layout="@layout/fragment_news" />
     <fragment
         android:id="@+id/contactFragment"
-        android:name="com.devgalan.tucofradia2.ui.contact.ContactFragment"
+        android:name="com.devgalan.tucofradia2.ui.main.contact.ContactFragment"
         android:label="@string/contact"
         tools:layout="@layout/fragment_contact" />
     <fragment
         android:id="@+id/signinFragment"
-        android:name="com.devgalan.tucofradia2.ui.auth.signin.SigninFragment"
+        android:name="com.devgalan.tucofradia2.ui.main.auth.signin.SigninFragment"
         android:label="@string/auth" >
         <action
             android:id="@+id/action_signinFragment_to_loginFragment"
@@ -58,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/serverListFragment"
-        android:name="com.devgalan.tucofradia2.ui.serverList.ServerListFragment"
+        android:name="com.devgalan.tucofradia2.ui.main.serverList.ServerListFragment"
         android:label="@string/servers"
         tools:layout="@layout/fragment_server_list" >
         <action

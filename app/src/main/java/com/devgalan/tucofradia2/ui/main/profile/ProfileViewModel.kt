@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.ui.profile
+package com.devgalan.tucofradia2.ui.main.profile
 
 import android.content.Context
 import android.net.Uri

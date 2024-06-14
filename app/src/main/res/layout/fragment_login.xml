@@ -5,7 +5,7 @@
     style="@style/ViewRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.login.LoginFragment">
+    tools:context=".ui.main.auth.login.LoginFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvLogin"
@@ -75,7 +75,7 @@
                 style="@style/Checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Recuérdame" />
+                android:text="@string/remember" />
 
             <Button
                 android:id="@+id/btnLogin"

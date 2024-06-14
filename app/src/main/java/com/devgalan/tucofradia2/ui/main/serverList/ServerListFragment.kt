@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.ui.serverList
+package com.devgalan.tucofradia2.ui.main.serverList
 
 import android.app.Dialog
 import android.os.Bundle
@@ -68,9 +68,6 @@ class ServerListFragment : Fragment() {
             filterDialog.dismiss()
         }
 
-        etName.hint = etName.context.getString(R.string.server_name)
-        etCode.hint = etName.context.getString(R.string.server_code_hint)
-
         etName.addTextChangedListener { query ->
             val filteredServers = serverListViewModel.filterServerList(
                 query.toString(),
@@ -132,7 +129,7 @@ class ServerListFragment : Fragment() {
                 serverListViewModel.joinServer(server.code, "", ResultActions({
                     navigateToGameScreen(server)
                 }, {
-                    showServerFullDialog("Error joining server: $it")
+                    showServerFullDialog("Error al unirte al servidor: $it")
                 }))
             } else {
                 showEnterPasswordDialog(server)
@@ -142,21 +139,23 @@ class ServerListFragment : Fragment() {
     }
 
     private fun showServerFullDialog(text: String) {
-        val dialog = Dialog(binding.rvServerList.context)
-        dialog.setContentView(R.layout.dialog_error_join_server)
+        activity?.runOnUiThread {
+            val dialog = Dialog(binding.rvServerList.context)
+            dialog.setContentView(R.layout.dialog_error_join_server)
 
-        val btnBack = dialog.findViewById<Button>(R.id.btnBack)
+            val btnBack = dialog.findViewById<Button>(R.id.btnBack)
 
-        if (text.isNotEmpty()) {
-            val tvTitle = dialog.findViewById<TextView>(R.id.tvTitle)
-            tvTitle.text = text
+            if (text.isNotEmpty()) {
+                val tvTitle = dialog.findViewById<TextView>(R.id.tvTitle)
+                tvTitle.text = text
+            }
+
+            btnBack.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.show()
         }
-
-        btnBack.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialog.show()
     }
 
     private fun showEnterPasswordDialog(server: Server) {

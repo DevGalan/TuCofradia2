@@ -1,4 +1,4 @@
-package com.devgalan.tucofradia2.ui.auth.signin
+package com.devgalan.tucofradia2.ui.main.auth.signin
 
 import android.os.Bundle
 import android.view.LayoutInflater

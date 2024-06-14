@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ViewRoot.RecycleView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.news.NewsFragment">
+    android:orientation="vertical"
+    tools:context=".ui.main.serverList.ServerListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvNews"
+        android:id="@+id/rvServerList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_news"/>
+        android:scrollbars="vertical"
+        tools:listitem="@layout/item_server" />
 
-</FrameLayout>
+</LinearLayout>
