@@ -1,6 +1,7 @@
 package com.devgalan.tucofradia2.data.repository
 
 import com.devgalan.tucofradia2.data.ResultActions
+import com.devgalan.tucofradia2.data.dto.server.CreateServerDto
 import com.devgalan.tucofradia2.data.dto.server.JoinServerDto
 import com.devgalan.tucofradia2.data.dto.server.UpdateServerDto
 import com.devgalan.tucofradia2.data.model.server.Server
@@ -33,5 +34,10 @@ class ServerRepository  @Inject constructor(
 
     suspend fun leaveServer(serverId: Long, userId: Long, resultActions: ResultActions<Unit>) {
         api.leaveServer(serverId, userId, resultActions)
+    }
+
+    suspend fun createServer(createServerDto: CreateServerDto, resultActions: ResultActions<Server>) {
+        val response = api.createServer(createServerDto, resultActions)
+        serverProvider.playingServer = (response)
     }
 }

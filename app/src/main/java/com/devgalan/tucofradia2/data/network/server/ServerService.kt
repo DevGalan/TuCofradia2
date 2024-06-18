@@ -1,6 +1,7 @@
 package com.devgalan.tucofradia2.data.network.server
 
 import com.devgalan.tucofradia2.data.ResultActions
+import com.devgalan.tucofradia2.data.dto.server.CreateServerDto
 import com.devgalan.tucofradia2.data.dto.server.JoinServerDto
 import com.devgalan.tucofradia2.data.dto.server.UpdateServerDto
 import com.devgalan.tucofradia2.data.model.server.Server
@@ -79,6 +80,18 @@ class ServerService @Inject constructor(private val api: ServerApiClient) : ApiS
                 doResultActions(response, resultActions, Unit)
             } catch (e: Exception) {
                 resultActions.onError(e.message ?: "Error desconocido")
+            }
+        }
+    }
+
+    suspend fun createServer(createServerDto: CreateServerDto, resultActions: ResultActions<Server>): Server {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = api.createServer(createServerDto)
+                doResultActions(response, resultActions, ERROR_SERVER)
+            } catch (e: Exception) {
+                resultActions.onError(e.message ?: "Error desconocido")
+                ERROR_SERVER
             }
         }
     }

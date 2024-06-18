@@ -43,7 +43,7 @@
                 android:maxLength="1" />
 
             <Button
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnCreateGuild"
                 style="@style/Button.Option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

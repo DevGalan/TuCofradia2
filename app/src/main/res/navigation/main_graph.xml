@@ -25,6 +25,12 @@
         <action
             android:id="@+id/action_homeFragment_to_serverListFragment"
             app:destination="@id/serverListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myServersFragment"
+            app:destination="@id/myServersFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_signinFragment"
+            app:destination="@id/signinFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -40,11 +46,6 @@
         android:name="com.devgalan.tucofradia2.ui.main.news.NewsFragment"
         android:label="@string/news"
         tools:layout="@layout/fragment_news" />
-    <fragment
-        android:id="@+id/contactFragment"
-        android:name="com.devgalan.tucofradia2.ui.main.contact.ContactFragment"
-        android:label="@string/contact"
-        tools:layout="@layout/fragment_contact" />
     <fragment
         android:id="@+id/signinFragment"
         android:name="com.devgalan.tucofradia2.ui.main.auth.signin.SigninFragment"
@@ -68,6 +69,26 @@
     <activity
         android:id="@+id/gameActivity"
         android:name="com.devgalan.tucofradia2.ui.GameActivity"
-        android:label="activity_game"
+        android:label="@string/app_name"
         tools:layout="@layout/activity_game" />
+    <fragment
+        android:id="@+id/myServersFragment"
+        android:name="com.devgalan.tucofradia2.ui.main.myServers.MyServersFragment"
+        android:label="@string/my_servers" >
+        <action
+            android:id="@+id/action_myServersFragment_to_gameActivity"
+            app:destination="@id/gameActivity" />
+        <action
+            android:id="@+id/action_myServersFragment_to_createServerFragment"
+            app:destination="@id/createServerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createServerFragment"
+        android:name="com.devgalan.tucofradia2.ui.main.createServer.CreateServerFragment"
+        android:label="@string/create_server" >
+        <action
+            android:id="@+id/action_createServerFragment_to_gameActivity"
+            app:destination="@id/gameActivity"
+            app:popUpTo="@id/myServersFragment" />
+    </fragment>
 </navigation>

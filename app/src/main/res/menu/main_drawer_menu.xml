@@ -21,11 +21,11 @@
             android:title="@string/news"
             app:iconTint="@color/white"
             app:showAsAction="ifRoom" />
-        <item
-            android:id="@+id/settingsFragment"
-            android:icon="@drawable/ic_settings"
-            app:iconTint="@color/white"
-            android:title="@string/settings"
-            app:showAsAction="ifRoom" />
+<!--        <item-->
+<!--            android:id="@+id/settingsFragment"-->
+<!--            android:icon="@drawable/ic_settings"-->
+<!--            app:iconTint="@color/white"-->
+<!--            android:title="@string/settings"-->
+<!--            app:showAsAction="ifRoom" />-->
     </group>
 </menu>

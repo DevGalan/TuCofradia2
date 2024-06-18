@@ -10,7 +10,7 @@ data class Server(
     var gameMonth: Byte,
     var amountPlayers: Byte,
     var maxPlayers: Byte,
-    var public: Boolean,
+    var isPublic: Boolean,
     val admin: User
 ) {
     fun isFull(): Boolean {

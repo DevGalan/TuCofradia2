@@ -59,7 +59,7 @@ class LoginViewModel @Inject constructor(
         onFinished.postValue(hasUser)
     }
 
-    fun checkIsValidAndGiveError(
+    private fun checkIsValidAndGiveError(
         loginUserDto: LoginUserDto
     ): Boolean {
         if (loginUserDto.email.isEmpty() || loginUserDto.password.isEmpty()) {

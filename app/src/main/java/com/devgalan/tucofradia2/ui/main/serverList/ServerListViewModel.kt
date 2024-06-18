@@ -22,6 +22,8 @@ class ServerListViewModel @Inject constructor(
 
     private var serverList: MutableLiveData<List<Server>> = MutableLiveData()
 
+    fun getServerList() = serverList
+
     fun onCreate() {
         serverList.value = serverProvider.servers
         viewModelScope.launch {
@@ -43,7 +45,7 @@ class ServerListViewModel @Inject constructor(
             it.name.contains(name, ignoreCase = true) && it.code.contains(
                 code,
                 ignoreCase = true
-            ) && it.public == public && (it.amountPlayers < it.maxPlayers || full)
+            ) && it.isPublic == public && (it.amountPlayers < it.maxPlayers || full)
         } ?: emptyList()
     }
 

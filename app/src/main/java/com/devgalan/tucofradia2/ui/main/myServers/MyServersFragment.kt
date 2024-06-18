@@ -7,22 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.EditText
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devgalan.tucofradia2.R
 import com.devgalan.tucofradia2.data.ResultActions
-import com.devgalan.tucofradia2.data.dto.server.JoinServerDto
 import com.devgalan.tucofradia2.data.model.server.Server
 import com.devgalan.tucofradia2.databinding.FragmentMyServersBinding
-import com.devgalan.tucofradia2.ui.main.news.NewsAdapter
-import com.devgalan.tucofradia2.ui.main.serverList.ServerListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MyServersFragment : Fragment() {
@@ -41,13 +35,32 @@ class MyServersFragment : Fragment() {
 
         myServersViewModel.onCreate()
 
+        initObservers()
+
         initUI()
 
         return binding.root
     }
 
+    private fun initObservers() {
+        myServersViewModel.getMyServers().observe(viewLifecycleOwner) {
+            myServersAdapter.updateServers(it)
+        }
+    }
+
     private fun initUI() {
+        initListeners()
         initRecyclerView()
+    }
+
+    private fun initListeners() {
+        binding.btnCreateServer.setOnClickListener {
+            navigateToCreateServerScreen()
+        }
+    }
+
+    private fun navigateToCreateServerScreen() {
+        findNavController().navigate(R.id.action_myServersFragment_to_createServerFragment)
     }
 
     private fun initRecyclerView() {
@@ -64,32 +77,32 @@ class MyServersFragment : Fragment() {
     }
 
     private fun showEditDialog(server: Server) {
-        val leaveServerDialog = Dialog(binding.rvServerList.context)
-        leaveServerDialog.setContentView(R.layout.dialog_edit_server)
+        val editServerDialog = Dialog(binding.rvServerList.context)
+        editServerDialog.setContentView(R.layout.dialog_edit_server)
 
-        val btnSave = leaveServerDialog.findViewById<Button>(R.id.btnSave)
-        val fabCancel = leaveServerDialog.findViewById<FloatingActionButton>(R.id.fabCancel)
-        val etDescription = leaveServerDialog.findViewById<EditText>(R.id.etDescription)
-        val etPassword = leaveServerDialog.findViewById<EditText>(R.id.etPassword)
+        val btnSave = editServerDialog.findViewById<Button>(R.id.btnSave)
+        val fabCancel = editServerDialog.findViewById<FloatingActionButton>(R.id.fabCancel)
+        val etDescription = editServerDialog.findViewById<EditText>(R.id.etDescription)
+        val etPassword = editServerDialog.findViewById<EditText>(R.id.etPassword)
+
+        if (server.description.isNotEmpty()) {
+            etDescription.setText(server.description)
+        }
 
         btnSave.setOnClickListener {
             myServersViewModel.editServer(server.id, etPassword.text.toString(), etDescription.text.toString(), ResultActions({
-                myServersViewModel.setMyServers(myServersViewModel.getMyServers().value?.map {
-                    if (it.id == server.id) {
-                        it.description = etDescription.text.toString()
-                        it.public = etPassword.text.toString().isEmpty()
-                    }
-                    it
-                } ?: emptyList())
-                myServersAdapter.updateServers(myServersViewModel.getMyServers().value ?: emptyList())
+                myServersViewModel.onCreate()
+                editServerDialog.dismiss()
             }, {
                 println("Error: $it")
             }))
         }
 
         fabCancel.setOnClickListener {
-            leaveServerDialog.dismiss()
+            editServerDialog.dismiss()
         }
+
+        editServerDialog.show()
     }
 
     private fun showLeaveDialog(serverId: Long) {
@@ -101,10 +114,8 @@ class MyServersFragment : Fragment() {
 
         btnLeave.setOnClickListener {
             myServersViewModel.leaveServer(serverId, ResultActions({
-                myServersViewModel.setMyServers(myServersViewModel.getMyServers().value?.filter {
-                    it.id != serverId
-                } ?: emptyList())
-                myServersAdapter.updateServers(myServersViewModel.getMyServers().value ?: emptyList())
+                myServersViewModel.onCreate()
+                leaveServerDialog.dismiss()
             }, {
                 println("Error: $it")
             }))
@@ -113,9 +124,12 @@ class MyServersFragment : Fragment() {
         fabCancel.setOnClickListener {
             leaveServerDialog.dismiss()
         }
+
+        leaveServerDialog.show()
     }
 
     private fun navigateToGameScreen(server: Server) {
         myServersViewModel.setJoinedServer(server)
+        findNavController().navigate(R.id.action_myServersFragment_to_gameActivity)
     }
 }

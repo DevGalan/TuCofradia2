@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devgalan.tucofradia2.R
 import com.devgalan.tucofradia2.data.ResultActions
@@ -38,6 +39,8 @@ class ServerListFragment : Fragment() {
 
         serverListViewModel.onCreate()
 
+        subscribeObservers()
+
         initDialog()
 
         initListeners()
@@ -45,6 +48,15 @@ class ServerListFragment : Fragment() {
         initUI()
 
         return binding.root
+    }
+
+    private fun subscribeObservers() {
+        serverListViewModel.getServerList().observe(viewLifecycleOwner) {
+            val filteredServers = serverListViewModel.filterServerList("", "", true, false)
+            serverListAdapter.updateServers(it)
+            serverListAdapter.updateServers(filteredServers)
+            initDialog()
+        }
     }
 
     private fun initDialog() {
@@ -61,7 +73,8 @@ class ServerListFragment : Fragment() {
         btnClear.setOnClickListener {
             etName.text.clear()
             etCode.text.clear()
-            cbPublic.isChecked = false
+            cbPublic.isChecked = true
+            cbFull.isChecked = false
         }
 
         fabCancel.setOnClickListener {
@@ -125,7 +138,7 @@ class ServerListFragment : Fragment() {
             if (server.isFull()) {
                 showServerFullDialog("")
             }
-            if (server.public) {
+            if (server.isPublic) {
                 serverListViewModel.joinServer(server.code, "", ResultActions({
                     navigateToGameScreen(server)
                 }, {
@@ -179,6 +192,7 @@ class ServerListFragment : Fragment() {
 
     private fun navigateToGameScreen(server: Server) {
         serverListViewModel.setJoinedServer(server)
+        findNavController().navigate(R.id.action_serverListFragment_to_gameActivity)
     }
 
     private fun initRecyclerView() {

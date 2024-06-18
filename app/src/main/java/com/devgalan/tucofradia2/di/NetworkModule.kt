@@ -27,6 +27,7 @@ object NetworkModule {
 
         return Retrofit.Builder()
             .baseUrl("http://10.0.2.2:8080/api/")
+//            .baseUrl("https://tucofradia-web-backend.onrender.com/api/")
             .client(
                 OkHttpClient.Builder()
                     .addInterceptor { chain ->

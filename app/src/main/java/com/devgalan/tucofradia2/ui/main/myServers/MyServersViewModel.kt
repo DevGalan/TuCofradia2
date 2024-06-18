@@ -28,7 +28,7 @@ class MyServersViewModel @Inject constructor(
 
     fun onCreate() {
         val userId = if (userProvider.currentUser != null) userProvider.currentUser!!.id else -1
-        myServersList.value = serverProvider.servers
+        myServersList.postValue(serverProvider.myServers)
         viewModelScope.launch {
             getMyServersUseCase(userId, ResultActions({
                 myServersList.postValue(it)
@@ -41,29 +41,10 @@ class MyServersViewModel @Inject constructor(
 
     fun getMyServers() = myServersList
 
-    fun setMyServers(myServers: List<Server>) {
-        myServersList.value = myServers
-    }
-
     fun leaveServer(serverId: Long, resultActions: ResultActions<Unit>) {
         viewModelScope.launch {
             val userId = if (userProvider.currentUser != null) userProvider.currentUser!!.id else -1
             leaveServerUseCase(serverId, userId, resultActions)
-        }
-    }
-
-    fun editServer(serverId: Long, updateServerDto: UpdateServerDto) {
-        viewModelScope.launch {
-            updateServersUseCase(serverId, updateServerDto, ResultActions({
-                serverProvider.servers.find { it.id == serverId }?.let {
-                    it.description = updateServerDto.description
-                    if (updateServerDto.password.isNotEmpty()) {
-                        it.public = updateServerDto.password.isEmpty()
-                    }
-            }
-                }, {
-                println("Error updating servers: $it")
-            }))
         }
     }
 

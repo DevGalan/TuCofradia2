@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".ui.main.serverList.ServerListFragment">
 
+    <Button
+        android:id="@+id/btnCreateServer"
+        style="@style/Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/create_server" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvServerList"
         android:layout_width="match_parent"

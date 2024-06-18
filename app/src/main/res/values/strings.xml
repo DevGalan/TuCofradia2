@@ -27,7 +27,7 @@
     <string name="play">Jugar</string>
     <string name="save">Guardar</string>
     <string name="join">Unirme</string>
-    <string name="players">Jugadores: %d/%d</string>
+    <string name="players">Cofradías: %d/%d</string>
     <string name="server_code">Código: %s</string>
     <string name="servers">Servidores</string>
     <string name="filters">Filtros</string>
@@ -50,4 +50,13 @@
     <string name="leave_server">¿Desea abandonar el servidor?</string>
     <string name="description">Descripción</string>
     <string name="max_players">Máximos jugadores</string>
+    <string name="search_servers">Buscar servidores</string>
+    <string name="my_servers">Mis servidores</string>
+    <string name="create_server">Crear servidor</string>
+    <string name="server_name_hint">Nombre del servidor *</string>
+    <string name="server_description_hint">Descripción</string>
+    <string name="guild_max_players_hint">Cantidad máxima de jugadores *</string>
+    <string name="server_password_hint">Contraseña (Vacío = Público)</string>
+    <string name="code">Código</string>
+    <string name="include_full">Incluir llenos</string>
 </resources>

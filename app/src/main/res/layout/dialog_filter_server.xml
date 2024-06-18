@@ -37,21 +37,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="255"
-            android:hint="@string/message" />
+            android:hint="@string/code" />
 
         <CheckBox
             android:id="@+id/cbPublic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
             android:text="@string/_public"
+            android:checked="true"
             style="@style/Checkbox"/>
 
         <CheckBox
             android:id="@+id/cbFull"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/full"
+            android:text="@string/include_full"
             style="@style/Checkbox"/>
 
         <Button
