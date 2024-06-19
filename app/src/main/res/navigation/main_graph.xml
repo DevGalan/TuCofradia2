@@ -93,7 +93,7 @@
     <fragment
         android:id="@+id/createGuildFragment"
         android:name="com.devgalan.tucofradia2.ui.game.createGuild.CreateGuildFragment"
-        android:label="fragment_create_guild"
+        android:label="@string/create_guild"
         tools:layout="@layout/fragment_create_guild" >
         <action
             android:id="@+id/action_createGuildFragment_to_gameActivity"

@@ -29,6 +29,10 @@ class CreateGuildFragment : Fragment() {
     ): View {
         binding = FragmentCreateGuildBinding.inflate(inflater, container, false)
 
+        binding.btnCreateGuild.visibility = View.GONE
+
+        createGuildViewModel.onCreate()
+
         subscribeObservers()
 
         createGuildViewModel.getServerGuilds()
@@ -42,6 +46,9 @@ class CreateGuildFragment : Fragment() {
         createGuildViewModel.onFinished.observe(viewLifecycleOwner) {
             if (it) {
                 findNavController().navigate(R.id.action_createGuildFragment_to_gameActivity)
+            }
+            else {
+                binding.btnCreateGuild.visibility = View.VISIBLE
             }
         }
     }
