@@ -97,6 +97,7 @@
         tools:layout="@layout/fragment_create_guild" >
         <action
             android:id="@+id/action_createGuildFragment_to_gameActivity"
-            app:destination="@id/gameActivity" />
+            app:destination="@id/gameActivity"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
 </navigation>
