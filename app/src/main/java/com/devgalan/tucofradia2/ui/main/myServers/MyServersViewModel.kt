@@ -61,4 +61,8 @@ class MyServersViewModel @Inject constructor(
             )
         }
     }
+
+    fun getUserId(): Long {
+        return userProvider.currentUser?.id ?: -1
+    }
 }

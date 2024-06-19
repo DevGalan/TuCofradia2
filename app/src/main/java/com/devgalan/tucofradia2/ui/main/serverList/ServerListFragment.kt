@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devgalan.tucofradia2.R
@@ -20,6 +21,8 @@ import com.devgalan.tucofradia2.data.model.server.Server
 import com.devgalan.tucofradia2.databinding.FragmentServerListBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ServerListFragment : Fragment() {
@@ -191,8 +194,10 @@ class ServerListFragment : Fragment() {
     }
 
     private fun navigateToGameScreen(server: Server) {
-        serverListViewModel.setJoinedServer(server)
-        findNavController().navigate(R.id.action_serverListFragment_to_gameActivity)
+        lifecycleScope.launch(Dispatchers.Main) {
+            serverListViewModel.setJoinedServer(server)
+            findNavController().navigate(R.id.action_serverListFragment_to_createGuildFragment)
+        }
     }
 
     private fun initRecyclerView() {

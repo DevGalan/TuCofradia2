@@ -9,7 +9,7 @@ import com.devgalan.tucofradia2.R
 import com.devgalan.tucofradia2.core.help.UnitConverser
 import com.devgalan.tucofradia2.data.model.server.Server
 
-class MyServersViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
+class MyServersViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
     private val tvServerName = view.findViewById<TextView>(R.id.tvServerName)
     private val tvServerDescription = view.findViewById<TextView>(R.id.tvServerDescription)
@@ -20,17 +20,39 @@ class MyServersViewHolder(private val view: View): RecyclerView.ViewHolder(view)
     private val btnEdit = view.findViewById<Button>(R.id.btnEdit)
     private val btnLeave = view.findViewById<Button>(R.id.btnLeave)
 
-    fun render(server: Server, position: Int, onLeaveButtonPressed: (Server) -> Unit, onEditButtonPressed: (Server) -> Unit, onJoinButtonPressed: (Server) -> Unit) {
+    fun render(
+        server: Server,
+        userId: Long,
+        position: Int,
+        onLeaveButtonPressed: (Server) -> Unit,
+        onEditButtonPressed: (Server) -> Unit,
+        onJoinButtonPressed: (Server) -> Unit
+    ) {
         tvServerName.text = server.name
         tvServerDescription.text = server.description
         tvServerCode.text = tvServerName.context.getString(R.string.server_code, server.code)
-        tvServerAmountPlayers.text = tvServerName.context.getString(R.string.players, server.amountPlayers, server.maxPlayers)
+        tvServerAmountPlayers.text = tvServerName.context.getString(
+            R.string.players,
+            server.amountPlayers,
+            server.maxPlayers
+        )
+
+        if (userId == server.admin.id) {
+            btnEdit.visibility = View.VISIBLE
+        } else {
+            btnEdit.visibility = View.GONE
+        }
 
         val layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
-        if (position == 0) layoutParams.setMargins(0, UnitConverser.dpToPx(16, view), 0, UnitConverser.dpToPx(16, view))
+        if (position == 0) layoutParams.setMargins(
+            0,
+            UnitConverser.dpToPx(16, view),
+            0,
+            UnitConverser.dpToPx(16, view)
+        )
         else layoutParams.setMargins(0, 0, 0, UnitConverser.dpToPx(16, view))
         view.layoutParams = layoutParams
 

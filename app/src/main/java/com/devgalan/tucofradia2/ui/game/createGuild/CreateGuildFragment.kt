@@ -8,12 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.devgalan.tucofradia2.R
+import com.devgalan.tucofradia2.data.ResultActions
+import com.devgalan.tucofradia2.data.dto.guild.CreateGuildDto
 import com.devgalan.tucofradia2.databinding.FragmentCreateGuildBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CreateGuildFragment : Fragment() {
 
     private lateinit var binding: FragmentCreateGuildBinding
+
+    private val createGuildViewModel by viewModels<CreateGuildViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,11 +29,21 @@ class CreateGuildFragment : Fragment() {
     ): View {
         binding = FragmentCreateGuildBinding.inflate(inflater, container, false)
 
-        initUI()
+        subscribeObservers()
+
+        createGuildViewModel.getServerGuilds()
 
         initListeners()
 
         return binding.root
+    }
+
+    private fun subscribeObservers() {
+        createGuildViewModel.onFinished.observe(viewLifecycleOwner) {
+            if (it) {
+                findNavController().navigate(R.id.action_createGuildFragment_to_gameActivity)
+            }
+        }
     }
 
     private fun initListeners() {
@@ -52,9 +70,16 @@ class CreateGuildFragment : Fragment() {
                 // No need to do anything here
             }
         })
-    }
 
-    private fun initUI() {
-        
+        binding.btnCreateGuild.setOnClickListener {
+            createGuildViewModel.createGuild(
+                CreateGuildDto(binding.etName.text.toString(),
+                    binding.etCuote.text.toString().toByte()), ResultActions({
+                        findNavController().navigate(R.id.action_createGuildFragment_to_gameActivity)
+                    }, {
+                        println(it)
+                })
+            )
+        }
     }
 }

@@ -42,7 +42,7 @@ class CreateServerFragment : Fragment() {
         }
         createServerViewModel.onFinished.observe(viewLifecycleOwner) {
             if (it) {
-                findNavController().navigate(R.id.action_createServerFragment_to_gameActivity)
+                findNavController().navigate(R.id.action_createServerFragment_to_createGuildFragment)
             }
         }
     }

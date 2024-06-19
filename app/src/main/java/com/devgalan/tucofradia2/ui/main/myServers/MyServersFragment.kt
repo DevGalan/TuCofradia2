@@ -66,7 +66,7 @@ class MyServersFragment : Fragment() {
     private fun initRecyclerView() {
         binding.rvServerList.layoutManager = LinearLayoutManager(binding.rvServerList.context)
         myServersAdapter =
-            MyServersAdapter(myServersViewModel.getMyServers().value ?: emptyList(), {
+            MyServersAdapter(myServersViewModel.getMyServers().value ?: emptyList(), myServersViewModel.getUserId(), {
                 showLeaveDialog(it.id)
             }, {
                 showEditDialog(it)
@@ -130,6 +130,6 @@ class MyServersFragment : Fragment() {
 
     private fun navigateToGameScreen(server: Server) {
         myServersViewModel.setJoinedServer(server)
-        findNavController().navigate(R.id.action_myServersFragment_to_gameActivity)
+        findNavController().navigate(R.id.action_myServersFragment_to_createGuildFragment)
     }
 }
